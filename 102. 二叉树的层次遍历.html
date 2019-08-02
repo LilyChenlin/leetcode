@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script src="" async defer>
+            /**
+            * Definition for a binary tree node.
+            * function TreeNode(val) {
+            *     this.val = val;
+            *     this.left = this.right = null;
+            * }
+            */
+            /**
+            * @param {TreeNode} root
+            * @return {number[][]}
+            */
+            var levelOrder = function(root) {
+                if (!root) return []
+                let queue = [root, null]
+                const items = []
+                let levelNodes = [] //存放每层节点
+                while (queue.length > 0) {
+                    const t = queue.shift(); //取出父节点
+                    if (t) {
+                        levelNodes.push(t.val)
+                        if (t.left) {
+                            queue.push(t.left)
+                        } 
+                        if (t.right) {
+                            queue.push(t.right)
+                        }
+                    } else {
+                        items.push(levelNodes)
+                        // 把存放每层节点数组每次存储完清空
+                        levelNodes = []
+                        if (queue.length > 0) {
+                            queue.push(null)
+                        }
+                    }
+                }
+                return items
+                
+            };
+        </script>
+    </body>
+</html>

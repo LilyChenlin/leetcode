@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script  async defer>
+            /**
+                题目描述
+                给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+                不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+                链接：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array
+
+                示例
+                给定数组 nums = [1,1,2], 
+                函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+
+                双指针
+                这道题如果不要求，O(n)的时间复杂度， O(1)的空间复杂度的话，会很简单。 但是这道题是要求的，这种题的思路一般都是采用双指针
+                如果是数据是无序的，就不可以用这种方式了，从这里也可以看出排序在算法中的基础性和重要性。
+
+            */
+            /**
+            * @param {number[]} nums
+            * @return {number}
+            */
+            var removeDuplicates = function(nums) {
+                let slowP = 0;
+                const size = nums.length;
+                for (let fastP = 0; fastP < size; fastP++) {
+                    if (nums[fastP] !== nums[slowP]) {
+                        slowP ++
+                        nums[slowP] = nums[fastP]
+                    }
+                }
+                return slowP + 1
+            };
+        </script>
+    </body>
+</html>

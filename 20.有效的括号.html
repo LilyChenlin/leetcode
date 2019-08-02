@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script async defer>
+        /**
+            leetcode: https://leetcode-cn.com/problems/valid-parentheses/
+            题目描述
+            给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+            有效字符串需满足：
+            左括号必须用相同类型的右括号闭合。
+            左括号必须以正确的顺序闭合。
+            注意空字符串可被认为是有效字符串。
+            
+            JS中 栈 push pop 队列 oush shift
+        */
+        /**
+        * @param {string} s
+        * @return {boolean}
+        */
+        var isValid = function(s) {
+            let valid = true;
+            const stack = [];
+            const mapper = {
+                '{' : '}',
+                '[' : ']',
+                '(' : ')'
+            }
+            for (let i in s) {
+                var value = s[i]
+                if (['{','[','('].indexOf(value) > -1) {
+                    stack.push(value)
+                } else {
+                    const peak = stack.pop()
+                    if (value !== mapper[peak]) {
+                        return false
+                    }
+                }
+            }
+            if (stack.length > 0) return false
+            return valid
+        };
+        </script>
+    </body>
+</html>

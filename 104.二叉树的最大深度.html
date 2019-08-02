@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        
+        <script src="" async defer>
+            // 解法一：迭代
+            var maxDepth = function (root) {
+                if (!root) return 0;
+                if (!root.left && !root.right) return 1;
+                //层次遍历BFS
+                let cut = root
+                let depth = 1
+                const queue = [root, null] 
+                while((cur = queue.shift()) !== undefined) {
+                    // 说明这层已经遍历完
+                    if (cur === null) {
+                        if (queue.length === 0) return depth
+                        depth ++ 
+                        queue.push(null)
+                        continue
+                    }
+                    if (cur.left) queue.push(cur.left)
+                    if (cur.right) queue.push(cur.right) 
+                    
+                }
+                return depth
+                console.log(depth)
+            }
+            
+            // 解法二：递归
+        </script>
+    </body>
+</html>
