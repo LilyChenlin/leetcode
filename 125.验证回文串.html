@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>   
+        <script async defer>
+            /**
+                给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+                说明：本题中，我们将空字符串定义为有效的回文串。
+
+                输入: "A man, a plan, a canal: Panama"
+                输出: true
+            */
+            // 双指针
+            /**
+            * @param {string} s
+            * @return {boolean}
+            */
+            function isValid(c) {
+                const charCode = c.charCodeAt(0)
+                const isDigit = charCode >= "0".charCodeAt(0) && charCode <= "9".charCodeAt(0)
+                const isChar = charCode >= "a".charCodeAt(0) && charCode <= "z".charCodeAt(0)
+                return isDigit || isChar
+            }
+            var isPalindrome = function(s) {
+                // console.log("di")
+                let arr = s.toLowerCase()
+                console.log(typeof arr)
+                let left = 0
+                let right = arr.length - 1
+                console.log(right)
+                while (left < right) {
+                    if (!isValid(arr[left])) {
+                        left ++ 
+                        continue
+                    }
+                    if (!isValid(arr[right])) {
+                        right --
+                        continue
+                    }
+                    if (arr[left] === arr[right]) {
+                        left ++
+                        right --
+                        continue
+                    } else {
+                        break
+                    }
+                }
+                return right <= left
+
+            };
+            console.log(isPalindrome("A man, a plan, a canal: Panama"));
+            console.log('dii')
+        </script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script async defer>
+            /**
+                给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。
+
+                输入: "abca"
+                输出: True
+                解释: 你可以删除c字符。
+
+                思路: 双指针。如果头尾指针指的值不同，则跳过左边或右边一个数值再进行比较，如果后面的都可以回文，则true
+                    如果还是不行就是false
+            */  
+
+            /**
+            * @param {string} s
+            * @return {boolean}
+            */
+            var validPalindrome = function(s) {
+                s = s.toLowerCase()
+                let left = 0
+                let right = s.length - 1
+                if (left < right) {
+                    if (s[left] === s[right]) {
+                        left ++
+                        right --
+                    } else {
+                        return isPalindrome(s, left, right-1) || isPalindrome(s, left+1, right)
+                    }
+                }
+                return true
+            };
+            isPalindrome = function (s, i, j) {
+                while (i < j) {
+                    if (s[i++] !== s[j--]) {
+                        return false
+                    }
+                }
+
+                return true
+            }
+        </script>
+    </body>
+</html>

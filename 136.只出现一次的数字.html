@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script  async defer>
+            /**
+                给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+                由于题目规定时间复杂度 所以不能使用便利
+                这里使用异或
+                相同数字返回0 不同数字返回1
+                任何数和本身异或都为0
+                任何数和0异或都是自己本身
+                2 ^ 0 = 2
+                2 ^ 2 = 0
+            */
+            /**
+            * @param {number[]} nums
+            * @return {number}
+            */
+            var singleNumber = function(nums) {
+                let ret = 0
+                for (let i = 0; i < nums.length; i++) {
+                    let el = nums[i]
+                    ret = el ^ ret
+                }
+                return ret
+            };
+        </script>
+    </body>
+</html>
