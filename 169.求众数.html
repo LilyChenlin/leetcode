@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script src="" async defer>
+            /**
+                给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+                你可以假设数组是非空的，并且给定的数组总是存在众数。
+                输入: [3,2,3]
+                输出: 3
+            */
+            // 解法一 摩尔投票法
+            //把众数记为 +1+1 ，把其他数记为 -1−1 ，将它们全部加起来，显然和大于 0 ，从结果本身我们可以看出众数比其他数多。
+            /**
+            * @param {number[]} nums
+            * @return {number}
+            */
+            var majorityElement = function(nums) {
+                let count = 0;
+                let element = nums[0]
+                for (let i = 0; i < nums.length; i++) {
+                if (nums[i] === element) {
+                        count ++    
+                } else {
+                        count --
+                        if (count == 0) {
+                            element = nums[i+1]
+                        }
+                }
+                    
+                }
+                return element
+            };
+        </script>
+    </body>
+</html>
