@@ -11,7 +11,7 @@ leetcode 刷题记录 🖊 🏷
 
   [125.验证回文串](https://github.com/LilyChenlin/leetcode/blob/master/125.验证回文串.html)  （头尾指针）
 
-  [680.验证回文字符串二](https://github.com/LilyChenlin/leetcode/blob/master/680. 验证回文字符串二.html)
+  [680.验证回文字符串二](https://github.com/LilyChenlin/leetcode/blob/master/680.验证回文字符串二.html)
 
   
 
@@ -25,7 +25,7 @@ leetcode 刷题记录 🖊 🏷
 
 - 题目
 
-  [102.二叉树的层次遍历](https://github.com/LilyChenlin/leetcode/blob/master/102. 二叉树的层次遍历.html)
+  [102.二叉树的层次遍历](https://github.com/LilyChenlin/leetcode/blob/master/102.二叉树的层次遍历.html)
 
   [104.二叉树的最大深度](https://github.com/LilyChenlin/leetcode/blob/master/104.二叉树的最大深度.html)
 
