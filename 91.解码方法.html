@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            /**
+                一条包含字母 A-Z 的消息通过以下方式进行了编码：
+                'A' -> 1
+                'B' -> 2
+                ...
+                'Z' -> 26
+                给定一个只包含数字的非空字符串，请计算解码方法的总数。
+
+                示例 1:
+                输入: "12"
+                输出: 2
+                解释: 它可以解码为 "AB"（1 2）或者 "L"（12）。
+
+                来源：力扣（LeetCode）
+                链接：https://leetcode-cn.com/problems/decode-ways
+
+            */
+            /**
+                思路： 动态规划
+                对于一个数字来说[1,9]这九个数字能够被识别为一种编码方式
+                对于两个数字来说[10, 26]这几个数字能被识别为一种编码方式
+                所以如果是12 则有两种编码方式
+                dp[i] = 自身编码一位 + 以前面的元素和自身去编码
+            */
+
+            /**
+            * @param {string} s
+            * @return {number}
+            */
+            var numDecodings = function(s) {
+                if (s == null || s.length == 0 ) {
+                    return 0;
+                }
+                // 创建一个长度为s.lenght+1的数组 并把其
+                const dp = Array(s.length + 1).fill(0)
+                dp[0] = 1
+                dp[1] = s[0] !== "0" ? 1 : 0
+                for (let i = 2; i < s.length + 1; i++) {
+                    // 获取自身编码
+                    const one = s.slice(i - 1, i)
+                    
+                    const two = s.slice(i - 2, i)
+                    if (two >= 10 && two <= 26) {
+                        dp[i] = dp[i-2]
+                    }
+                    if (one >= 1 && one <= 9) {
+                        dp[i] += dp[i-1]
+                    }
+                }
+                return dp[dp.length - 1]
+            };
+
+        </script>
+    </body>
+</html>

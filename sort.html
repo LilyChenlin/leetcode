@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            
+            function checkArray (array) {
+                if(!array || array.length <= 2) return
+            }
+            function swap (array, left, right) {
+                let leftValue = array[left]
+                array[left] = array[right]
+                array[right] = leftValue
+            }
+            // 一 冒泡排序
+            function buabbleSort (array) {
+                checkArray(array)
+                for (let i = array.length - 1; i > 0; i--) {
+                    for (let j = 0; j < i; j++) {
+                        if (array[j] > array[j+1]) {
+                            swap(array, j, j+1)
+                        }
+                    } 
+                }
+                return array
+            }
+            // console.log(buabbleSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+
+            // 二 快速排序
+            function quickSort (array) {
+                const sort = (arr, left = 0, right = arr.length - 1) => {
+                    if (left >= right) {
+                        return
+                    }
+                    let i = left
+                    let j = right
+                    // 取定一个基准值
+                    const baseVal = arr[j]
+                    while (i < j) {
+                        // 当从左边遍历的数字都比基准值小时，i++ 一直比较后面的数字
+                        while (i < j && arr[i] <= baseVal) {
+                            i++
+                        }
+                        // 若arr[i] > baseVal 将大数值移动到基准值右边
+                        arr[j] = arr[i]
+                        while (i < j && arr[j] > baseVal) {
+                            j--
+                        }
+                        // 若arr[i] < baseVal 
+                        arr[i] = arr[j]
+                    }
+                    arr[j] = baseVal
+                    sort(arr, left, j-1)
+                    sort(arr, j + 1, right)
+                }
+                const newArr = array.concat()
+                sort(newArr)
+                return newArr
+            }
+            console.log(quickSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+            
+        </script>
+        
+    </body>
+</html>

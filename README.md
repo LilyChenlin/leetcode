@@ -45,4 +45,22 @@ leetcode 刷题记录 🖊 🏷
 
   [136.只出现一次的数字](https://github.com/LilyChenlin/leetcode/blob/master/136.只出现一次的数字.html)
 
-  
+
+
+## 动态规划
+
+- 题目
+
+  [91.解码方法](https://github.com/LilyChenlin/leetcode/blob/master/91.解码方法.html)
+
+  [139.单词拆分]
+
+## 排序
+
+### 交换排序
+
+**1. 冒泡排序**
+
+> 空间复杂度 O(1) 时间复杂度 O(n ^ 2)
+
+**2.快速排序**
