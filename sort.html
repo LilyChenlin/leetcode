@@ -69,6 +69,56 @@
             }
             console.log(quickSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
             
+            // 三 插入排序
+            function insertSort (array) {
+                checkArray(array)
+                for (let i = 1; i < array.length; i++) {
+                    for (let j = i - 1; j >= 0; j--) {
+                        if (array[j + 1] < array[j]) {
+                            swap(array, j, j+1)
+                        }
+                    }
+                }
+                return array
+            }
+            console.log(insertSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+
+            // 四 希尔排序
+            function shellSort (array) {
+                
+                for (let step = Math.floor(array.length )/ 2; step > 0; step = Math.floor(step / 2)) {
+                    for (let i = step; i < array.length; i++) {
+                        let j = i
+                        let temp = array[j] 
+                        if ((j - step >= 0) && (array[j - step] > temp)) {
+                            array[j] = array[j - step]
+                            j = j - step
+                        }
+                        array[j] = temp
+                    }
+                  
+                }
+                return array
+            }
+            console.log(shellSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+
+            // 五 选择排序
+            function selectSort (array) {
+                for (let i = 0; i < array.length; i++) {
+                    let minIndex = i 
+                    for (let j = i; j < array.length; j++) {
+                        if (array[j] < array[minIndex]) {
+                            // 获取到最小数字的索引
+                            minIndex = j
+                        }
+                    }
+                    var temp = array[minIndex]
+                    array[minIndex] = array[i] 
+                    array[i] = temp
+                }
+                return array
+            }
+            console.log(selectSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
         </script>
         
     </body>
