@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      function insertSort (arr) {
+        // 外层for循环控制每次遍历要比较的数
+        for(let i = 1; i < arr.length; i++) {
+          for (let j = i - 1; j >= 0; j--) {
+            if (arr[j + 1] < arr[j]) {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+            } 
+          }
+        }
+        return arr
+      }
+      console.log(insertSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+    </script>
+
+  </body>
+</html>

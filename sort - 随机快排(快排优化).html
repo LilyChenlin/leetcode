@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      function swap (arr, i ,j) {
+        var temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+      }
+      function partition (arr, L, R) {
+        var less = L - 1
+        var more = R + 1
+        var midArr = []
+        while (L < R) {
+          if (arr[L] < arr[R]) {
+            // less所在位置的下一个位置与L位置的数进行交换
+            swap(arr, ++less, L++)
+          } else if (arr[L] > arr[R]) {
+            swap(arr, --more, L)
+          } else { //等于的时候 监听下一个
+            L++
+          }
+        }
+        swap(arr, more, R)
+        // 返回中间等于区域的左右区间
+        return midArr[less + 1, more]
+      }
+      function randomQuickSort (arr) {
+        if (arr === null || arr.length < 2) {
+          return
+        }
+        quickSort(arr, 0, arr.length - 1)
+
+      }
+      function quickSort (arr, L, R) {
+        if (L < R){
+          return
+        }
+        var p = partition(arr, L, R)
+        quickSort(arr, L, p[0] - 1)
+        quickSort(arr, p[1] + 1, R )
+        return arr
+      }
+      var array = [43, 12, 35, 18, 26, 57, 7, 21, 43, 46]
+      var result = randomQuickSort(array)
+      console.log(result)
+    </script>
+  </body>
+</html>

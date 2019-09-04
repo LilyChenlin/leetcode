@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      // 一、 求一个数组中的最大值 学习递归
+      // function getMax (arr, Start, End) {
+      //   if (Start === End) {
+      //     return arr[Start]
+      //   }
+      //   var mid = Math.floor((Start + End) / 2)
+      //   var maxLeft = getMax(arr, Start, mid)
+      //   var maxRight = getMax(arr, mid + 1, End)
+      //   return Math.max(maxLeft, maxRight)
+      // }
+
+      function merge (arr, L, mid, R) {
+        var help = []
+        var i = 0
+        var p1 = L
+        var p2 = mid + 1
+        while (p1 <= mid && p2 <= R) {
+          help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++]
+        }
+        // 当p2越界，p1未遍历完
+        while (p1 <= mid) {
+          help[i++] = arr[p1++]
+        }
+        while (p2 <= R) {
+          help[i++] = arr[p2++]
+        }
+        i = 0
+        for (var j = L; j < R; j++){
+          arr[j] = help[i++]
+        }
+      }
+      function sortProcess (arr, L, R) {
+        if (L === R) {
+          return
+        }
+        var mid = Math.floor((L + R) / 2)
+        sortProcess(arr, L, mid)
+        sortProcess(arr, mid + 1, R)
+        merge(arr, L, mid, R)
+        return arr
+      }
+      var arr = [43, 12, 35, 18, 26, 57, 7, 21, 43, 46]
+      var result = sortProcess(arr, 0, arr.length - 1)
+      console.log(result)
+    </script>
+  </body>
+</html>

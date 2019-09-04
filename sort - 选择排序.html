@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      function selectSort (arr) {
+        var temp
+        for (let i = 0; i < arr.length; i++) {
+          let minIndex = i
+          for (let j = i + 1; j < arr.length; j++) {
+            minIndex = arr[j] < arr[minIndex] ? j : minIndex
+          }
+          [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+
+        }
+        return arr
+      }
+      console.log(selectSort([43, 12, 35, 18, 26, 57, 7, 21, 43, 46]))
+    </script>
+  </body>
+</html>
