@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      function swap(arr, i, j) {
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+      }
+      function check (arr, start, end) {
+        for (let i = start; i < end; i++) {
+          if (arr[end] === arr[i]) {
+            return false
+          }
+        }
+        return true
+      }
+      function perm(arr = [], n = 0) {
+        if (arr.length === n) {
+          return
+        } 
+        for (let i = n; i < arr.length; i++) {
+          if (check(arr, n, i)) {
+            swap(arr, n, i)
+            perm(arr, n + 1)
+            swap(arr, n, i)
+          }
+        }
+        return arr
+      }
+      perm(["a", "b", "c"], 0);
+    </script>
+  </body>
+</html>

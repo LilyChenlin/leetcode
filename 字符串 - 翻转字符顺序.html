@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      function reverseSentence (str) {
+        // 将字符串转化为数组然后翻转
+        var chars = str.split("").reverse()
+        var result = '', last = []
+        chars.forEach(chs => {
+          // 如果遇到空字符串，说明前面的字符已经组成了单词
+          if (chs === " ") {
+            result += last.reverse().join("")
+            last.length = 0 //清空上一个单词
+          }
+          // 把chs一个个推进去
+          last.push(chs)
+        })
+        result += last.reverse().join("")
+        return result 
+      }
+      console.log(reverseSentence("I am a student."));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      // 创建一个数组container来标记字符流中字符出现的次数
+      let container = new Array(256).fill(-1)
+      let index = 0
+      function Init () {
+        container = new Array(256).fill(-1)
+        index = 0
+      }
+
+      // 遍历字符流 当字符没有出现过，未
+      function Insert (ch) {
+        const code = ch.charCodeAt(0)
+        console.log(code)
+      }
+      var ch = "google"
+      Insert(ch)
+    </script>
+  </body>
+</html>
