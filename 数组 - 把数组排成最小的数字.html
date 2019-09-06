@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>  
+      function printMinNumber (arr) {
+        if (!arr || arr.length === 0) {
+          return
+        }
+        // 根据compare的返回进行排序 如果-1 则a>b 如果1 则a<b
+        return arr.sort(compare).join("")
+      }
+      function compare (a, b) {
+        var front = "" + a + b
+        var behind = "" + b + a
+        return front - behind
+        
+      }
+      printMinNumber([3, 32, 321])
+      console.log(printMinNumber([3, 32, 321]))
+    </script>
+  </body>
+</html>

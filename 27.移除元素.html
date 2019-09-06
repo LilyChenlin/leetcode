@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      var removeElement = function(nums, val) {
+        var temp = 0
+        var length = nums.length - 1
+        for (var i = 0; i <= length; i++) {
+            if (nums[temp] == val) {
+              nums.splice(temp,1)
+            } else {
+              temp++
+            }
+        }
+        return nums.length
+      };
+      console.log(removeElement([0,1,2,2,3,0,4,2], 2))
+    </script>
+  </body>
+</html>

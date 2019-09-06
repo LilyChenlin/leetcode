@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      /**
+      * @param {string} haystack
+      * @param {string} needle
+      * @return {number}
+      */
+      // 解法一
+      var strStr = function(haystack, needle) {
+        if (needle.length === 0) return 0
+        var l = 0
+        var r = 0
+        var haystackArr = haystack.split("")
+        var needleArr = needle.split("")
+        for (var i = 0; i < needleArr.length; i++) {
+          if (needleArr[i] === needleArr[0]) {
+            var flag = true
+            for (var j = 1; j < needleArr.length; j++) {
+              if (needleArr[i + j] != needleArr[j]) {
+                flag = false
+                break
+              } 
+            }
+            if (flag) return i
+          }
+          return -1
+        }
+
+      };
+      // console.log(strStr("", ""))
+      // 解法二
+      var strStr2 = function (haystack, needle) {
+        if (needle.length === 0) return 0
+        for (let i = 0; i < haystack.length; i++) {
+          if (haystack[i] == needle[0]) {
+            console.log()
+            if (haystack.substring(i, i + needle.length) == needle) return i 
+          } 
+        }
+        return -1
+      }
+      // console.log(strStr2("hello", "ll"))
+    </script>
+  </body>
+</html>

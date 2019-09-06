@@ -12,10 +12,12 @@
       function reverseSentence (str) {
         // 将字符串转化为数组然后翻转
         var chars = str.split("").reverse()
+        console.log(chars)
         var result = '', last = []
         chars.forEach(chs => {
           // 如果遇到空字符串，说明前面的字符已经组成了单词
           if (chs === " ") {
+            // 转化为字符串
             result += last.reverse().join("")
             last.length = 0 //清空上一个单词
           }
@@ -25,7 +27,7 @@
         result += last.reverse().join("")
         return result 
       }
-      console.log(reverseSentence("I am a student."));
+      console.log(reverseSentence("the sky is blue"))
     </script>
   </body>
 </html>
