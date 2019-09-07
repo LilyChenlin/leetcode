@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      var str = "hello world"
+      function uniqueStr (str) {
+        var strArr = str.split("")
+        // 去重之后的数组
+        var result = []
+        strArr.map((value, index) => {
+          // 如果数组中含有这个value
+          if (result.indexOf(value) == -1) {
+            result.push(value)
+          } else {
+            console.log(value)
+          }
+        })
+        return result.join("")
+      }
+      
+      console.log(uniqueStr(str))
+    </script>
+  </body>
+</html>

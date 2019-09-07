@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      // 给定一个二叉树，返回它的先序遍历
+      // 递归实现
+      var preorderTraversal = function (root, array = []) {
+        if (root) {
+          array.push(root.value)
+          preorderTraversal(root.left, array)
+          preorderTraversal(root.right, array)
+        }
+        return array
+      }
+
+      // 非递归实现
+      var preorderTraversalNot = function (head) {
+        if (head != null) {
+          var result = []
+          var stack = []
+          stack.push(head)
+          while(stack.length != 0) {
+            head = stack.pop()
+            result.push(head)
+            if (head.right != null) {
+              stack.push(head.right)
+            }
+            if (head.left != null) {
+              stack.push(head.left)
+            }
+          }
+          return result
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+      /**
+        编写一个函数来查找字符串数组中的最长公共前缀。
+        如果不存在公共前缀，返回空字符串 ""。
+        输入: ["flower","flow","flight"]
+        输出: "fl"
+      */
+      /**
+      * @param {string[]} strs
+      * @return {string}
+      */
+      // 解法一， 先将数组中的第一个字符串看成最长的公共前缀 , 
+      var strs = ["flower","flow","flight"]
+      var longestCommonPrefix1 = function(strs) {
+        if (strs.length === 0) return 
+        var prefix = strs[0]
+        for (var i = 1; i < strs.length; i++) {
+          // 如果这个公共前缀可以被匹配 那么肯定都是从最开始第一个数字匹配 那么indexOf就会返回0
+          while(strs[i].indexOf(prefix) != 0 ) {
+            // 没匹配到，就说明这个公共前缀不可以，那么就把公共前缀的尾巴逐渐递减~~
+            prefix = prefix.substring(0,prefix.length - 1)
+            if (prefix.length === 0) return ""
+          }
+        }
+        return prefix
+      };
+
+      // 解法二
+      var longestCommonPrefix2 = function (strs) {
+        
+      }
+      
+    </script>
+  </body>
+</html>
