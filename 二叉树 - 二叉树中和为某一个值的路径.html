@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    
+    <script  async defer>
+      var stack = []
+      // 存放路径
+      var path = []
+      function findPath (root, expectNumber) {
+        if (root === null) {
+          return []
+        }
+        stack = []
+        path = []
+        cal(root, expectNumber)
+        return path
+      }
+      function cal (root, expectNumber) {
+        stack.push(root.val)
+        if (root.val == expectNumber && root.left == null && root.right == null) {
+          path.push(stack.slice())
+        }
+        if (root.left != null) {
+          cal(root.left, expectNumber - root.val)
+        }
+        if (root.right != null) {
+          cal(root.right, expectNumber - root.val)
+        }
+        stack.pop()
+      }
+    </script>
+  </body>
+</html>

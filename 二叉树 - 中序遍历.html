@@ -12,15 +12,15 @@
       var inorderTraversal = function (head) {
         if (head !== null) {
           var stack = []
+          var result = []
           while (stack.length !== 0 || head !== null) {
             if (head !== null) {
               stack.push(head)
-              head = head.right
-            } else {
-              head = stack.pop()
-              console.log(head.value + " ")
-              head = head.right
-            }
+              head = head.left88888
+            } 
+            head = stack.pop()
+            result.push(head.val)
+            head = head.right
           }
         }
       }

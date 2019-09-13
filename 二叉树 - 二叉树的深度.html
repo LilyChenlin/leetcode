@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+
+    <script async defer>
+      // 解法一
+      function TreeDepth(pRoot)
+      {
+          if (!pRoot) return 0
+          var left = 1 + TreeDepth(pRoot.left)
+          var right = 1 + TreeDepth(pRoot.right)
+          return Math.max(left, right)
+      }
+      // 解法二 非递归
+
+      function TreeDepth(pRoot)
+      {
+          if (pRoot == null) {
+              return 0
+          }
+          var stack = [pRoot, null]
+          var levelStack = [], result = []
+          while (stack.length > 0) {
+              pRoot = stack.shift()
+              if (pRoot) {
+                  levelStack.push(pRoot)
+                  if (pRoot.left) {
+                      stack.push(pRoot.left)
+                  }
+                  if (pRoot.right) {
+                      stack.push(pRoot.right)
+                  }
+              } else {
+                  result.push(levelStack)
+                  levelStack = []
+                  if (stack.length > 0) {
+                      stack.push(null)
+                  }
+              }
+          }
+          return result.length
+      }
+
+    </script>
+
+  </body>
+</html>

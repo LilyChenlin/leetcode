@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      // 解法一 递归
+      /* function TreeNode(x) {
+        this.val = x;
+        this.left = null;
+        this.right = null;
+      } */
+        function Mirror(root)
+        {
+            if (root == null) return
+            var temp = root.left
+            root.left = root.right
+            root.right = temp
+            Mirror(root.left)
+            Mirror(root.right)
+            
+        }
+
+    // 解法二 普通
+        function Mirror(root)
+        {
+            if (root === null) return
+            var tmp = [], result = []
+            tmp.push(root)
+            while (tmp.length > 0) {
+                root = tmp.shift()
+                if (root.left != null || root.right != null) {
+                    var temp = root.left
+                    root.left = root.right
+                    root.right = temp
+                    if (root.left != null) {
+                        tmp.push(root.left)
+                    }
+                    if (root.right != null) {
+                        tmp.push(root.right)
+                    }
+                }
+            }
+            return root
+        }
+    </script>
+  </body>
+</html>
