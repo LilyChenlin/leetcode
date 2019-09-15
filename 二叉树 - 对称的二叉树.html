@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /* function TreeNode(x) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+    } */
+    function isSymmetrical(pRoot)
+    {
+        if (pRoot == null) {
+            return true
+        }
+        return judge(pRoot.left, pRoot.right)
+    }
+    function judge(left, right) {
+        if(left == null) {
+            return right == null
+        }
+        if (right == null) {
+            return false
+        }
+        if (left.val != right.val) {
+            return false
+        }
+        return judge(left.left, right.right) && judge(left.right, right.left)
+    }
+    </script>
+  </body>
+</html>

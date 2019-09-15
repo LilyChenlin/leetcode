@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      var isBalanced = true
+      function IsBalanced_Solution (pRoot) {
+        // 空子树也是平衡二叉树
+        if (pRoot == null) {
+          return true
+        }
+        IsBanlanced(pRoot)
+        var result = isBalanced
+        isBalanced = true
+        return result
+      }
+      // 计算高度，通过高度差来判断是否是二叉树
+      function IsBanlanced (root) {
+        if (root == null) {
+          return 0
+        }
+        // 记录左右子树高度
+        var left = 0, right = 0
+        // 递归判断左子树是否是平衡二叉树
+        if (root.left) {
+          left = isBalanced(root.left)
+        }
+        if (root.right) {
+          right = isBalanced(root.right)
+        }
+        if (Math.abs(left - right) > 1) {
+          isBalanced = false
+        }
+        // 计算高度
+        return left > right ? left + 1 : right + 1
+      }
+    </script>
+  </body>
+</html>

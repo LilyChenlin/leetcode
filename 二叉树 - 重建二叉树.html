@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /* function TreeNode(x) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+    } */
+    function reConstructBinaryTree(pre, vin)
+    {
+        var result = null
+        if (pre.length > 1) {
+            // 获得二叉树的根节点
+            var root = pre[0]
+            // 从中序遍历序列中寻找根节点的位置，进行左右子树划分
+            var rootIndex = vin.indexOf(root)
+            var leftTree = vin.slice(0, rootIndex)
+            var rightTree = vin.slice(rootIndex + 1, vin.length)
+            pre.shift()
+            var preLeft = pre.slice(0, leftTree.length)
+            var preRight = pre.slice(leftTree.length, pre.length)
+            result = {
+                val: root,
+                left: reConstructBinaryTree(preLeft,leftTree),
+                right: reConstructBinaryTree(preRight, rightTree)
+            }
+        } else if (pre.length == 1){
+            result = {
+                val: pre[0],
+                left: null,
+                right: null
+            }
+        }
+        return result
+    }
+    </script>
+  </body>
+</html>

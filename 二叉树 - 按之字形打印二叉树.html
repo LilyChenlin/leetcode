@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+
+    
+    <script  async defer>
+    /* function TreeNode(x) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+    } */
+    function Print(pRoot)
+    {
+        if (pRoot == null) {
+            return []
+        }
+        var queue = [], result = []
+        queue.push(pRoot)
+        // flag true 不用reverse
+        var flag = true 
+        while (queue.length > 0) {
+            var length = queue.length
+            // 存放每层遍历的结果, 每一层循环遍历结束都要归零
+            var levelStack = []
+            for (var i = 0; i < length; i++) {
+                pRoot = queue.shift()
+                levelStack.push(pRoot.val)
+                if (pRoot.left != null) {
+                  queue.push(pRoot.left)
+                }
+                if (pRoot.right != null) {
+                  queue.push(pRoot.right)
+                }
+            }
+            if (!flag) {
+                levelStack.reverse()
+            }
+            flag = !flag
+            result.push(levelStack)
+        }
+        return result
+    }
+    </script>
+  </body>
+</html>

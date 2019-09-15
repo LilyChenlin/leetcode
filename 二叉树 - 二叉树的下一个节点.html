@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      /*function TreeLinkNode(x){
+          this.val = x;
+          this.left = null;
+          this.right = null;
+          this.next = null;
+      }*/
+      function GetNext(pNode)
+      {
+          if (pNode == null) {
+              return null
+          }
+          // 如果有右子树
+          if (pNode.right != null) {
+              pNode = pNode.right
+              // 一直循环找到右子树最左边的点
+              while (pNode.left != null) {
+                  pNode = pNode.left
+              }
+              return pNode
+          }
+          
+          // 如果没有右子树, pNode.next 是指遍历后，pNode的下一个节点
+          while (pNode.next != null) {
+              // 寻找第一个节点是当前节点的父节点
+              if (pNode.next.left == pNode) {
+                  return pNode.next
+              }
+              pNode = pNode.next
+          }
+          return null
+      }
+    </script>
+  </body>
+</html>
