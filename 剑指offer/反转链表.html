@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /*function ListNode(x){
+        this.val = x;
+        this.next = null;
+    }*/
+    function ReverseList(pHead)
+    {
+        var arr = [], result = [], node = pHead
+        while (node) {
+            arr.push(node.val)
+            node = node.next
+        }
+        node = pHead
+        // 反转
+        while (node) 
+        {
+            node.val = arr.pop()
+            node = node.next
+        }
+        return pHead
+    }
+    
+    </script>
+  </body>
+</html>

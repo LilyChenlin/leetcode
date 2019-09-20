@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    
+    <script  async defer>
+      function reOrderArray(array)
+      {
+          var arr1 = [], arr2 = []
+          for (var i = 0; i < array.length; i++) {
+              // 奇数扔进去
+              if (array[i] % 2 !== 0) {
+                  arr1.push(array[i])
+              }
+              if (array[i] % 2 == 0) {
+                  arr2.push(array[i])
+              }
+          }
+          return arr1.concat(arr2)
+      }
+    </script>
+  </body>
+</html>
