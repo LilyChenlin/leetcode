@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      function NumberOf1Between1AndN_Solution(n)
+      {
+          var num = 0, counts = 0
+          if (n < 1) {return 0}
+          for (var i = 1; i <= n; i++) {
+              num = i
+              while (num > 0) {
+                  if (num % 10 == 1) {
+                      counts++
+                  }
+                  num = Math.floor(num / 10)
+              }
+          }
+          return counts
+      }
+    </script>
+  </body>
+</html>

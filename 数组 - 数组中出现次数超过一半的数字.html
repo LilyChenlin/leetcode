@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    function MoreThanHalfNum_Solution(numbers)
+    {
+        if (numbers.length == 0) return 
+        var length = numbers.length
+        // 记录第一个数字
+        var one = numbers[0]
+        // 记录出现次数
+        var time = 1
+        // 遍历数组
+        for (var i = 1; i < numbers.length; i++) {
+            if (numbers[i] == one) {
+                time++
+            } else {
+                time --
+            }
+            
+            if (time == 0) {
+                // 更新one为当前元素
+                one = numbers[i]
+                time = 1 
+            }
+        }
+        // 最后一定one一定为出现次数最多的数字，现在来判断one出现的次数是否是超过5次
+        time = 0
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] == one) {
+                time++
+            }
+        }
+        if (time > Math.floor(numbers.length / 2)) {
+            return one
+        }else {
+            return 0
+        }
+        
+    }
+
+    </script>
+  </body>
+</html>

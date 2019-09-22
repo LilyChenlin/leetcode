@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    
+    <script  async defer>
+    function GetUglyNumber_Solution(index)
+    {
+        // 0.7的丑数 返回就是index
+        if (index < 7) return index
+        //定义三个指针跟踪
+        var p2 = 0, p3 = 0, p5 = 0, newNum = 1
+        // 定义丑数数组
+        var arr = []
+        arr.push(newNum)
+        while(arr.length < index) {
+            // 选出最小的数
+            newNum = Math.min(arr[p2] * 2, Math.min(arr[p3] * 3, arr[p5] * 5))
+            
+            if (arr[p2] * 2 == newNum) p2++
+            if (arr[p3] * 3 == newNum) p3++
+            if (arr[p5] * 5 == newNum) p5++
+            arr.push(newNum)
+        }
+        return newNum
+    };
+    </script>
+  </body>
+</html>

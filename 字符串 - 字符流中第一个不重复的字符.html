@@ -9,21 +9,19 @@
   </head>
   <body>
     <script>
-      // 创建一个数组container来标记字符流中字符出现的次数
-      let container = new Array(256).fill(-1)
-      let index = 0
-      function Init () {
-        container = new Array(256).fill(-1)
-        index = 0
-      }
+    function FirstNotRepeatingChar(str)
+    {
+        if (str.length < 1) return -1;
+        for (var i = 0; i < str.length; i++) {
+            // 字符串中唯一字符
+            if (str.indexOf(str[i]) == str.lastIndexOf(str[i])) {
+              return i
+            }
+            
+        }
+        return -1
 
-      // 遍历字符流 当字符没有出现过，未
-      function Insert (ch) {
-        const code = ch.charCodeAt(0)
-        console.log(code)
-      }
-      var ch = "google"
-      Insert(ch)
+    }
     </script>
   </body>
 </html>

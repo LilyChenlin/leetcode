@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    function FindGreatestSumOfSubArray(array)
+    {
+        if (array.length == 0) {
+            return 0
+        }
+        var max = array[0]
+        var pre = array[0]
+        for (var i = 1; i < array.length; i++) {
+            if (pre < 0) {pre = 0}
+            max = Math.max(max, array[i] + pre)
+            pre = pre + array[i]
+        }
+        return max
+    }
+    </script>
+  </body>
+</html>
