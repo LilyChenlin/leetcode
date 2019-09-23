@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      function FindContinuousSequence(sum)
+      {
+          // 双指针解法
+          var pSlow = 1, pHigh = 2
+          // 存下一组连续正数序列
+          var list = []
+          // 用来存所有的连续正数序列
+          var result = []
+          while (pSlow < pHigh) {
+              var cur = (pSlow + pHigh) * (pHigh - pSlow + 1) / 2
+              if (cur == sum) {
+                  list = []
+                  for (var i = pSlow; i <= pHigh; i++) {
+                      list.push(i)
+                  }
+                  result.push(list)
+                  // 当slow指针追上high指针时，后面的数都会比sum大了
+                  pSlow++
+              } else if (cur < sum) {
+                  pHigh++
+              } else {
+                  pSlow++
+              }
+          }
+          return result
+      }
+      console.log(FindContinuousSequence(9))
+    </script>
+  </body>
+</html>

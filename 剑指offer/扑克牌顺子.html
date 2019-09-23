@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      function IsContinuous(numbers)
+      {
+          if (numbers.length == 0) return false
+          // write code here
+          var i
+          // 顺序排列吧
+          numbers.sort()
+          // 记录0的个数 count ,gap为两数之差
+          var count = 0, gap = 0
+          // var copy = numbers.slice(0)
+          var lastZeor = numbers.lastIndexOf(0)
+          count = lastZeor - 0 + 1
+          numbers.splice(0, count)
+          for(i = 0; i < numbers.length; i++) {
+              if (numbers[i+1] - numbers[i] > 1 ) {
+                  gap += numbers[i + 1] - numbers[i] - 1
+              } else if (numbers[i+1] - numbers[i] == 0){
+                return false
+              }
+          }
+          if (gap <= count) return true;
+          return false
+      }
+      console.log(IsContinuous([1,0,0,1,0]))
+    </script>
+  </body>
+</html>

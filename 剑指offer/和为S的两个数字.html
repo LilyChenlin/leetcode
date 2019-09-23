@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    function FindNumbersWithSum(array, sum)
+    {
+        // write code here
+        // 定义快慢指针 由于外层乘积最小
+        var pSlow = 0, pHigh = array.length - 1;
+        // 记录和正好是S的一对数
+        var list = []
+        var num = 0
+        while (pSlow < pHigh) {
+            num = array[pSlow] + array[pHigh]
+            if (num == sum) {
+                list.push(array[pSlow])
+                list.push(array[pHigh])
+                return list
+            } else if (num < sum){
+                pSlow++
+            } else {
+                pHigh--
+            }
+        }
+        return list
+    }
+
+    var arr = [1, 2, 3, 4, 5]
+    console.log(FindNumbersWithSum(arr, 5))
+    </script>
+  </body>
+</html>
