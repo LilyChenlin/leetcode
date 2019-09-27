@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    // 方法一： 循环
+    function reverseList (head) {
+      if (head == null) {
+        return null
+      }
+      var node = head
+      var p = head
+      var q = null
+      while (p.next != null) {
+        q = p.next
+        p.next = q.next
+        q.next = node
+        node = q
+      }
+      return node
+    }
+
+
+    // 方法二：递归
+    function reverseList2 (head) {
+      if (head == null || head.next == null) {
+        return head
+      }
+      
+      var reverselist = reverseList(head.next)
+      head.next.next = head
+      head.next = null
+      return reverselist
+    }
+    </script>
+  </body>
+</html>

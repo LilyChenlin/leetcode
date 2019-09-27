@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      /**
+      * Definition for singly-linked list.
+      * function ListNode(val) {
+      *     this.val = val;
+      *     this.next = null;
+      * }
+      */
+
+      /**
+      * @param {ListNode} head
+      * @return {boolean}
+      */
+      var hasCycle = function(head) {
+          if (head == null) return false
+          var slow = head
+          var fast = head.next
+          while (fast != slow) {
+              if (fast == null || fast.next == null) {
+                  return false
+              }
+              slow = slow.next
+              fast = fast.next.next
+          }
+          return true
+      };
+    </script>
+  </body>
+</html>
