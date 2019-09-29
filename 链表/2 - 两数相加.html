@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      /**
+      * Definition for singly-linked list.
+      * function ListNode(val) {
+      *     this.val = val;
+      *     this.next = null;
+      * }
+      */
+      /**
+      * @param {ListNode} l1
+      * @param {ListNode} l2
+      * @return {ListNode}
+      */
+
+
+      function ListNode(val) {
+          this.val = val;
+          this.next = null;
+      }
+      var addTwoNumbers = function(l1, l2) {
+          var dHead = new ListNode (0)
+          var cur = dHead
+          var p1 = l1
+          var p2 = l2
+          // 进位标识
+          var carry = 0
+          while(p1 != null || p2 != null || carry != 0) {
+              var sum = 0
+              // 链表值
+              var x = (p1 != null) ? p1.val : 0
+              var y = (p2 != null) ? p2.val : 0
+              sum = x + y + carry
+              // 进位
+              carry = Math.floor(sum / 10)
+              cur.next = new ListNode(Math.floor(sum % 10))
+              cur = cur.next
+              // 定义进位
+              if (p1 != null) {
+                  p1 = p1.next
+              }
+              if (p2 != null) {
+                  p2 = p2.next
+              }
+          }
+          return dHead.next
+      };
+    </script>
+  </body>
+</html>
