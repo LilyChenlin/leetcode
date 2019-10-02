@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      /**
+      * Definition for singly-linked list.
+      * function ListNode(val) {
+      *     this.val = val;
+      *     this.next = null;
+      * }
+      */
+      /**
+      * @param {ListNode} head
+      * @return {ListNode}
+      */
+      // 解法一 迭代
+      function ListNode (val) {
+          this.val = val;
+          this.next = null
+      }
+      var deleteDuplicates = function(head) {
+          // 哑节点
+          var dammy = new ListNode(-1)
+          var p = dammy
+          while (head != null) {
+              // 标识是否重复
+              var doubleBo = false
+              while (head != null && head.next != null && head.val == head.next.val) {
+                  head = head.next
+                  doubleBo = true
+              }
+              if (!doubleBo) {
+                  p.next = head
+                  p = p.next
+              }
+              head = head.next
+          }
+          p.next = null
+          return dammy.next
+      };
+
+      // 解法二 递归
+      /**
+      * Definition for singly-linked list.
+      * function ListNode(val) {
+      *     this.val = val;
+      *     this.next = null;
+      * }
+      */
+      /**
+      * @param {ListNode} head
+      * @return {ListNode}
+      */
+      var deleteDuplicates = function(head) {
+          if (head == null) {
+              return head
+          }
+          // 如果遇到重复的数字
+          if (head.next != null && head.val == head.next.val) {
+              while (head != null && head.next != null && head.val == head.next.val) {
+                  head = head.next
+              }
+              return deleteDuplicates(head.next)
+          } else {
+              head.next = deleteDuplicates(head.next)
+          }
+          return head
+
+      };
+    </script>
+  </body>
+</html>

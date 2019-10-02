@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      /**
+      * Definition for singly-linked list.
+      * function ListNode(val) {
+      *     this.val = val;
+      *     this.next = null;
+      * }
+      */
+      /**
+      * @param {ListNode} head
+      * @param {number} k
+      * @return {ListNode}
+      */
+      function ListNode (val) {
+          this.val = val;
+          this.next = null;
+      }
+      var rotateRight = function(head, k) {
+          if (head == null || head.next == null) {
+              return head
+          }
+          // 计算链表长度，
+          var n
+          // 找到链表的尾部节点
+          var old_tail = head
+          for (n = 1; old_tail.next != null; n++) {
+              // 遍历到最后就是尾部节点了
+              old_tail = old_tail.next
+          }
+          // 尾部连接到头节点
+          old_tail.next = head
+          // 找到相应的位置断开环
+          var new_tail= head
+          for (var i = 1; i < n - k % n; i++) {
+              // 找到新的尾节点
+              new_tail = new_tail.next
+          }
+          var new_head = new ListNode(0)
+          // 找到新的头节点
+          new_head = new_tail.next
+          // 让尾节点断开
+          new_tail.next = null
+          return new_head
+      };
+    </script>
+  </body>
+</html>
