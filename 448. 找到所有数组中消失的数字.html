@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+        // 解法一 升序 + 去重
+        var findDisappearedNumbers = function(nums) {
+            // 升序+去重
+            nums = nums.sort(function(a, b) {return a - b});
+            var len = nums.length;
+            var set = new Set(nums);
+            nums = [...set];
+            var j = 1;
+            var result = [];
+            for (var i = 0; i < len; i++) {
+                if (nums.indexOf(j) < 0) {
+                    result.push(j);
+                }
+                j++;
+            }
+            return result;
+        };
+      console.log(findDisappearedNumbers([1, 1]));
+    </script>
+  </body>
+</html>

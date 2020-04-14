@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+    /**
+    * @param {number[]} nums
+    * @param {number} k
+    * @return {number}
+    */
+    var findPairs = function(nums, k) {
+        // 先排序
+        nums.sort(function(a, b) {return a - b});
+        var map = new Set();
+        // 记录最后返回结果
+        // var result = 0;
+        var result = new Set();
+        for (var i = 0; i < nums.length; i++) {
+            if (map.has(nums[i] - k)) {
+                result.add(nums[i] - k);
+            }
+            map.add(nums[i]);
+        }
+        return result.size;
+    };
+    </script>
+  </body>
+</html>
