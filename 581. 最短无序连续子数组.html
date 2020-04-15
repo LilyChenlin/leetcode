@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+      /**
+      * @param {number[]} nums
+      * @return {number}
+      */
+      var findUnsortedSubarray = function(nums) {
+          // 思路: 将代码排序，然后找出不同的序列
+          // 升序
+          // 先复制nums数组
+          var arr = Array.from(nums);
+          nums.sort(function(a, b) {return a - b});
+          var start = nums.length, end = 0;
+          for (var i = 0; i < nums.length; i++) {
+              if (arr[i] !== nums[i]) {
+                  start = Math.min(start, i);
+                  end = Math.max(end, i);
+              }
+          }
+          return end < start ? 0 : end - start + 1;
+      };
+      console.log(findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15]));
+
+    
+    </script>
+  </body>
+</html>

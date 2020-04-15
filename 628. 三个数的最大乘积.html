@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      var maximumProduct = function(nums) {
+          // 升序排序 从后往前乘
+          // 考虑有负数情况
+          nums.sort(function (a, b) {return a - b});
+          var result1 = 1, result2 = 1;
+          result1 = nums[0] * nums[1]* nums[nums.length - 1];
+          result2 = nums[nums.length - 1] * nums[nums.length - 2] * nums[nums.length - 3]; 
+          return Math.max(result1, result2);
+      };      
+    </script>
+  </body>
+</html>

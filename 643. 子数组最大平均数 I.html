@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+      // 解法一 累计求和 求出从0到每个i的总和
+      // 使用数组sum[i]记录数组的累加和
+      // sum[i] -> 0到i的总和 sum = [1,13,8,2,52,55];
+      var findMaxAverage = function(nums, k) {
+          var sum = [];
+          sum[0] = nums[0];
+          for (var i = 1; i < nums.length; i++) {
+              sum[i] =  nums[i] + sum[i-1];
+          }
+          // 取得从sum[k] 为初始最大总和
+          var res = sum[k - 1] / k;
+          for (var i = k; i < nums.length; i++) {
+              res = Math.max(res, (sum[i] - sum[i - k]) / k)
+          }
+          return res;
+      };
+
+      // 解法二 滑动窗口
+      var findMaxAverage = function(nums, k) {
+          var sum = 0, res = 0;
+          // 先把前k个数加齐
+          for (var i = 0; i < k; i++) {
+              sum += nums[i];
+          }
+          res = sum;
+          for (var i = k; i < nums.length; i++) {
+              sum += nums[i] - nums[i - k];
+              res = Math.max(sum, res);
+          }
+          return res / k;
+      };      
+    </script>
+  </body>
+</html>
