@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      // 解法一 递归
+      var isSymmetric = function(root) {
+          if (root == null) return true;
+          return check(root.left, root.right);
+      };
+      var check = function (left, right) {
+          if (left == null && right == null) return true;
+          if (left == null || right == null) return false;
+
+          return (left.val == right.val) && check(left.left, right.right) && check(left.right, right.left);
+      }      
+    </script>
+  </body>
+</html>

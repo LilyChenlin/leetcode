@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      var levelOrderBottom = function(root) {
+          if (root == null) return [];
+          // 记录每一层的节点
+          var levelNode = [];
+          // 记录最后结果
+          var result = [];
+          // 暂时记录数组
+          var queue = [root, null];
+          while(queue.length > 0) {
+              root = queue.shift();
+              if (root) {
+                  levelNode.push(root.val);
+                  if (root.left){
+                      queue.push(root.left);
+                  }
+                  if (root.right) {
+                      queue.push(root.right);
+                  }
+              } else {
+                  result.push(levelNode);
+                  levelNode = [];
+                  if (queue.length > 0) {
+                      queue.push(null);
+                  }
+              }
+          }
+          var arr = [];
+          while(result.length > 0) {
+              arr.push(result.pop());
+          }
+          return arr;
+      };      
+    </script>
+  </body>
+</html>
