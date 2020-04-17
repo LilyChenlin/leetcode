@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /**
+    * @param {number} x
+    * @return {number}
+    */
+    var reverse = function(x) {
+        
+        // 数字 -> 字符串 -> 数字
+        var xArr = (x + '').split('');
+        // 记录是否有负号 有的话flag为1
+        var flag = 0;
+        if (xArr[0] == '-') {
+            flag = 1;
+            xArr.shift();
+        }
+        var resultArr = [];
+        while (xArr.length > 0) {
+            resultArr.push(xArr.pop());
+        }
+        
+        if (flag == 1) {
+            resultArr.unshift('-');
+        }
+        while (resultArr[0] == 0) {
+            resultArr.shift();
+        }
+        var res =  resultArr.join('');
+        if (res > Math.pow(2, 31) - 1 || res < Math.pow(2, 31) * -1) res = 0
+        return res;
+    };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>    
+    <script  async defer>
+      // 解法一 迭代
+      /**
+      * Definition for a binary tree node.
+      * function TreeNode(val) {
+      *     this.val = val;
+      *     this.left = this.right = null;
+      * }
+      */
+      /**
+      * @param {TreeNode} root
+      * @param {number} sum
+      * @return {boolean}
+      */
+      // 迭代
+      var hasPathSum = function(root, sum) {
+          if (root == null) return false;
+          // 存放节点
+          var nodeArr = [];
+          // 存放最后sum
+          var sumArr = [];
+          nodeArr.push(root);
+          sumArr.push(sum - root.val); 
+          while (nodeArr.length > 0) {
+              var cur_root = nodeArr.pop();
+              var cur_sum = sumArr.pop();
+              if ((cur_root.left == null) && (cur_root.right == null) && (cur_sum == 0)) {
+                  return true;
+              }
+              if (cur_root.right) {
+                  nodeArr.push(cur_root.right);
+                  sumArr.push(cur_sum - cur_root.right.val);
+              }
+              if (cur_root.left) {
+                  nodeArr.push(cur_root.left);
+                  sumArr.push(cur_sum - cur_root.left.val);
+              }
+
+          }
+          return false;
+      };
+
+      // 解法二 递归
+      var hasPathSum = function(root, sum) {
+          if (root == null) return false;
+          var val = root.val;
+          sum -= val;
+          if ((root.left == null) && (root.right == null)) {
+              if (sum == 0) {return true};
+          }
+          return hasPathSum(root.left, sum) || hasPathSum(root.right, sum);
+      };      
+    </script>
+  </body>
+</html>
