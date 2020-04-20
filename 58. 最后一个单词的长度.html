@@ -11,25 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
   </head>
-  <body>    
+  <body>
     <script  async defer>
-    var isValid = function(s) {
-      debugger
-        if (s == " ") return true;
-        var i = 1;
-        var flag = s[0];
-        var result = false;
-        while (i < s.length) {
-            if (flag == '(') result = s[i] == ')' ? true : false;
-            if (flag == '[') result = s[i] == ']' ? true : false;
-            if (flag == '{') result = s[i] == '}' ? true : false;
-            flag = s[i++]
-            i++;
-            if (result == false) return result;
-        }
-        return true;
-    };      
-    console.log(isValid("([)]"))
+      /**
+      * @param {string} s
+      * @return {number}
+      */
+      var lengthOfLastWord = function(s) {
+        var sArr = s.split(" ");
+        if (sArr.length < 1) {return 0};
+        var end = sArr.length - 1;
+        while (end > 0 && sArr[end] == '') end --;
+        return sArr[end].length
+      };    
+      console.log(lengthOfLastWord("Hello World")) ;
     </script>
   </body>
 </html>
