@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /**
+    * initialize your data structure here.
+    */
+    var MinStack = function() {
+        this.stack = [];
+        this.min_stack = [];
+    };
+
+    /** 
+    * @param {number} x
+    * @return {void}
+    */
+    MinStack.prototype.push = function(x) {
+        this.stack.push(x);
+        // 初始化 或 当有更小值入栈时，将当前值入最小栈中
+        if (this.min_stack.length == 0 || this.min_stack[this.min_stack.length - 1] >= x) {
+            this.min_stack.push(x);
+        }
+    };
+
+    /**
+    * @return {void}
+    */
+    MinStack.prototype.pop = function() {
+        if(this.stack.pop() == this.min_stack[this.min_stack.length - 1]) {
+            this.min_stack.pop();
+        }
+    };
+
+    /**
+    * @return {number}
+    */
+    MinStack.prototype.top = function() {
+        return this.stack[this.stack.length - 1];
+    };
+
+    /**
+    * @return {number}
+    */
+    MinStack.prototype.getMin = function() {
+        return this.min_stack[this.min_stack.length - 1];
+    };
+
+    /**
+    * Your MinStack object will be instantiated and called as such:
+    * var obj = new MinStack()
+    * obj.push(x)
+    * obj.pop()
+    * var param_3 = obj.top()
+    * var param_4 = obj.getMin()
+    */      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /**
+    * @param {number[]} nums
+    * @return {number}
+    */
+    //用哈希表做
+    var singleNumber = function(nums) {
+      debugger
+        var newObj = {};
+        for (let item of nums) {
+            if(newObj[item]) newObj[item]++
+            else  newObj[item] = 1;
+        }
+        for (let item in newObj) {
+          if (newObj[item] == 1) {
+            return item;
+          }
+        }
+    };
+    console.log(singleNumber([2,2,3,2]));
+    </script>
+  </body>
+</html>

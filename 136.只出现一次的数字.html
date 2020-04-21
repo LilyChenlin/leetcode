@@ -29,6 +29,7 @@
             * @param {number[]} nums
             * @return {number}
             */
+            // 位运算
             var singleNumber = function(nums) {
                 let ret = 0
                 for (let i = 0; i < nums.length; i++) {
@@ -36,6 +37,24 @@
                     ret = el ^ ret
                 }
                 return ret
+            };
+            // 使用哈希
+            var singleNumber = function(nums) {
+                var newObj = {};
+                for (let item of nums) {
+                    if (newObj[item]) delete newObj[item]
+                    else newObj[item] = 1;
+                }
+                return Object.keys(newObj)[0];
+            };
+            // 使用indexOf和lastIndexOf
+            var singleNumber = function(nums) {
+                if (nums.length < 2) return nums[0];
+                for (var i = 0; i < nums.length; i++) {
+                    if (nums.indexOf(nums[i]) == nums.lastIndexOf(nums[i])) {
+                        return nums[i];
+                    }
+                } 
             };
         </script>
     </body>
