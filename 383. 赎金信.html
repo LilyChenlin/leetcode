@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script async defer>
+    /**
+    * @param {string} ransomNote
+    * @param {string} magazine
+    * @return {boolean}
+    */
+    // 考虑采用哈希表
+    var canConstruct = function(ransomNote, magazine) {
+
+      if(ransomNote.length>magazine.length){
+        return false
+      }
+      var ranObj = new Map();
+      for(var i = 0; i < ransomNote.length; i++) {
+          if (ranObj.has(ransomNote[i])) {
+              ranObj.set(ransomNote[i], ranObj.get(ransomNote[i])+1);
+          } else {
+              ranObj.set(ransomNote[i], 1);
+          }
+
+      }
+      for(var i = 0; i < magazine.length; i++) {
+          if (ranObj.has(magazine[i])) ranObj.set(magazine[i], ranObj.get(magazine[i])-1);
+      }
+      for (var i = 0; i < ransomNote.length; i++) {
+        if (ranObj.get(ransomNote[i]) > 0) return false; 
+      }
+      return true;
+    };     
+    console.log(canConstruct("aa", "ab"))
+    </script>
+  </body>
+</html>

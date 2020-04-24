@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script  async defer>
+    /**
+    * @param {string} s
+    * @return {number}
+    */
+    var firstUniqChar = function(s) {
+      debugger
+        var map = new Map();
+        var flag = "";
+        for (let i = 0; i < s.length; i++) {
+            if (map.has(s[i])) {
+                map.set(s[i], map.get(s[i])+1)
+            } else {
+              map.set(s[i], 1);
+            }
+        }
+        for (let item of map.entries()) {
+            if (item[1] == 1) {
+              flag = item[0];
+              break;
+            }
+        }
+        return flag == "" ? -1 : s.indexOf(flag)
+    };      
+    console.log(firstUniqChar("loveleetcode"))
+    </script>
+  </body>
+</html>
