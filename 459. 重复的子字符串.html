@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script src async defer>
+      
+    // 解法一
+    var repeatedSubstringPattern = function(s) {
+      var s1 = (s + s).slice(1, -1);
+      return s1.indexOf(s) != -1;
+    };
+    
+    // 解法二
+    var repeatedSubstringPattern2 = function (s) {
+      var len = s.length;
+      for (var i = 1; i < s.length; i++) {
+        var item = s.slice(0, 1);
+        var count = len / item.length;
+        if (Number.isInteger(count) && item.repeat(count) == s) {
+          return true;
+        }
+      }
+      return false;
+    }
+    console.log(repeatedSubstringPattern("abab"))
+    </script>
+  </body>
+</html>
