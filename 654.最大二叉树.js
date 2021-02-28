@@ -66,15 +66,19 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 var constructMaximumBinaryTree = function(nums) {
-    // 找到最大值
     if (nums.length == 0) return null;
-    let max =  Math.max(...nums);
-    let index = nums.indexOf(max);
+    
+    // 找出最大值
+    let maxValue = Math.max(...nums);
+    //使用最大值构造root节点
+    let root = new TreeNode(maxValue);
 
-    let root =  new TreeNode(max);
-    root.left = constructMaximumBinaryTree(nums.slice(0, index))
-    root.right = constructMaximumBinaryTree(nums.slice(index + 1))
+    let maxIndex = nums.indexOf(maxValue);
+
+    root.left = constructMaximumBinaryTree(nums.slice(0, maxIndex));
+    root.right = constructMaximumBinaryTree(nums.slice(maxIndex+1));
     return root;
+
 };
 // @lc code=end
 

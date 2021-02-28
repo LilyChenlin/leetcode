@@ -52,24 +52,26 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 var buildTree = function(preorder, inorder) {
-    return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length)
-
+    let root = build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    return root;
 };
-var build = function (preorder, preStart, preEnd, inOrder, inStart, inEnd) {
-    if (preStart > preEnd) {
-        return null;
-    }
+var build = function (preorder, preStart, preEnd, inorder, inStart, inEnd) {
+    if (preStart > preEnd) {return null};
 
-    // 从前序遍历中取到第一个值，即为根节点
-    let rootVal = preorder[preStart];
-    // 找到根节点在中序遍历中对应的索引
-    let index = inOrder.indexOf(rootVal);
+    // 找出root根节点
+    const rootVal = preorder[preStart];
+
+    // 找出根节点在inorder中的index
+    const index = inorder.indexOf(rootVal);
+
     let root = new TreeNode(rootVal);
 
-    let leftSize = index - inStart;
-    root.left = build(preorder, preStart + 1, preStart + leftSize, inOrder, inStart, index - 1)
-    root.right = build(preorder, preStart + leftSize + 1, preEnd, inOrder, index + 1, inEnd)
+    // 计算出左侧树的大小
+    const leftLength = index - inStart;
+    root.left = build(preorder, preStart + 1, preStart + leftLength, inorder, inStart, index - 1 )
+    root.right = build(preorder, preStart + leftLength + 1, preEnd,  inorder, index + 1, inEnd);
     return root;
 }
+
 // @lc code=end
 

@@ -53,17 +53,22 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 var buildTree = function(inorder, postorder) {
-    return build(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1)
-};
+    return build(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
+};  
+
 var build = function (inorder, inStart, inEnd, postorder, postStart, postEnd) {
-    if (inStart > inEnd) return null;
-    let rootVal = postorder[postEnd];
-    let index = inorder.indexOf(rootVal);
+    if (inStart > inEnd) { return null };
+
+    // 从后序遍历中找到根节点
+    const rootVal = postorder[postEnd];
+    const rootIndx = inorder.indexOf(rootVal);
 
     let root = new TreeNode(rootVal);
-    let leftSize = index - inStart;
-    root.left = build(inorder, inStart, index - 1, postorder, postStart, leftSize + postStart - 1);
-    root.right = build(inorder, index + 1, inEnd, postorder, postStart + leftSize, postEnd - 1)
+
+    let leftSize = rootIndx - inStart;
+
+    root.left = build(inorder, inStart, rootIndx - 1, postorder, postStart, leftSize + postStart - 1);
+    root.right = build(inorder, rootIndx + 1, inEnd, postorder, postStart + leftSize, postEnd - 1);
     return root;
 }
 // @lc code=end
