@@ -61,21 +61,24 @@
  */
  // 二叉搜索树的中序遍历就是升序遍历  第K小就是把二叉树升序遍历 左中右
 var kthSmallest = function(root, k) {
-    let rank = 0; // 与k作对比
-    let res = null;
-
-    var traverse = (root, k) => {
-        if (root == null) return ;
-        traverse(root.left, k);
     
+    let res = 0; // 最后结果
+    let rank = 0; // 当前排名
+
+    // 中序遍历
+    const loopTree = (root) => {
+        if (root == null) return;
+
+        loopTree(root.left, k);
         rank++;
         if (rank == k) {
-            res =  root.val;
+            res = root.val;
             return
         }
-        traverse(root.right, k)
+        loopTree(root.right, k);
     }
-    traverse(root, k, 0)
+
+    loopTree(root);
     return res;
 };
 

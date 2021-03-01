@@ -83,19 +83,19 @@
  * @return {TreeNode}
  */
 var convertBST = function(root) {
+
     let sum = 0;
-    var traverse = function (root) {
-        if(root == null) return;
+    // 后序遍历
+    const loopTree = (root) => {
+        if (root == null) return null;
 
-        traverse(root.right);
-
-        // 维护累加和
+        loopTree(root.right);
         sum += root.val;
-        // 将累加和赋值给节点
-        root.val = sum;
-        traverse(root.left);
+        root.val = sum
+        loopTree(root.left);
     }
-    traverse(root);
+
+    loopTree(root);
     return root;
 };
 // @lc code=end
