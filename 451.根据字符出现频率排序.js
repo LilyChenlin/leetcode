@@ -64,30 +64,31 @@
  * @param {string} s
  * @return {string}
  */
+
+// tree
 var frequencySort = function(s) {
-    const map = new Map();
-    const len = s.length;
-    const temp = [];
+    if (!s.length) return;
+    let map = new Map();
+    let arr = [];
     let str = '';
-    if (!len) {
-        return s;
+    // 首先是先遍历然后把字母的当前次数存下来
+    for (let i = 0; i < s.length; i++) {
+        map.set(s[i], map.has(s[i]) ? map.get(s[i]) + 1 : 1);
     }
-    for (let char of s) {
-        if (map.has(char)) {
-            map.set(char, map.get(char) + 1);
-        } else {
-            map.set(char, 1);
-        }
-    }
+
     for (let [key, value] of map.entries()) {
-        temp.push({key, value})
+        arr.push({key,value})
     }
-    temp.sort((a, b) => b.value - a.value); // 降序
-    temp.forEach(item => {
-        let val = item.key;
-        str += val.repeat(item.value)
+
+    // 降序
+    arr.sort((a, b) => {return b.value - a.value});
+
+    arr.forEach(item => {
+        let temp = item.key.repeat(item.value);
+        str += temp;
     })
     return str;
+
 };
 // @lc code=end
 
