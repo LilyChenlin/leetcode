@@ -10,67 +10,28 @@
  * @return {number}
  */
 var calculate = function(s) {
-    s = s.replace(/(^\s+)|(\s+$)|\s+/g, "",)
-    let temp = [];
-    // 符号暂存，考虑*/优先级
-    let codeTemp = [];
-    let flag = '';
-    let val2 = '';
-    let val1 = '';
-    let code = '';
-    let numStr = '';
+    s = s.trim()
+    let ans = [];
+    let num = 0;
+    let preSign = '+'
     for (let i = 0; i < s.length; i++) {
-        if (isNumber(s[i]) || i == s.length - 1) {
-            numStr = numStr + s[i];
-            if (codeTemp[0] == '-'){numStr = - (Number(numStr));codeTemp.pop()}
-            if (i == s.length - 1) temp.push(numStr);
-            if (flag !== '') {
-                val2 = temp.pop();
-                val1 = temp.pop();
-                const addSum = add(flag, val1, val2);
-                temp.push(addSum);
-                flag = ''
-            } else if (temp.length > 1 && (s[i + 1] !== '*' && s[i + 1] !== '/')) {
-                val2 = temp.pop();
-                val1 = temp.pop();
-                const addSum = add('+', val1, val2);
-                temp.push(addSum)
-            }
-        } else {
-            temp.push(numStr);
-            numStr = '';
-            if ((s[i] == '+' || s[i] == '-')) {
-                codeTemp.push(s[i])
-            } else {
-                flag = s[i]
-            }
+        if (!isNaN(Number(s[i])) && s[i] !== ' ') {
+            num = num * 10 + s[i].charCodeAt() - '0'.charCodeAt();
         }
-        if (codeTemp.length > 2) {
-
-        }
+        if (isNaN(Number(s[i])) || i == s.length - 1) {
+            switch(preSign) {
+                case'+' : ans.push(num);break;
+                case'-' : ans.push(-num);break;
+                case'*' : ans.push(ans.pop() * num);break;
+                case'/' : ans.push(ans.pop() / num | 0);break;
+            }
+            preSign = s[i]
+            num = 0;
+        } 
     }
-    if (codeTemp.length > 0 && temp.length > 1) {
-        return add (codeTemp[0], temp[0], temp[1])
-    }
-    return temp[0]
-};
-
-var isNumber = (str) => {
-    if (str !== '+' && str !== '-' && str !== '*' && str !== '/') {
-        return true;
-    }
-    return false;
-}
-
-var add = (code, val1, val2) => {
-    val2 = Number(val2)
-    val1 = Number(val1)
     let res = 0;
-    switch(code) {
-        case'+': res = val1 + val2;break;
-        case'-': res = val1 - val2;break;
-        case'*': res = val1 * val2;break;
-        case'/': res = Math.floor(val1 / val2);break;
+    while (ans.length) {
+        res+=ans.pop()
     }
     return res;
 }
