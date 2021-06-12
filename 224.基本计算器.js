@@ -10,36 +10,36 @@
  * @return {number}
  */
 var calculate = function(s) {
-    s = s.trim();
-    let stack = [];
-    let str = '';
-    let flag = '+';
-    for (let i = 0; i < s.length; i++) {
-        if ((!isNaN(Number(s[i]))) && s[i] !== ' ') {
-            // 数字
-            str += s[i];
-        } else if ((isNaN(Number(s[i]))) && s[i] !== ' ') {
-            let temp = Number(str)
-            switch(flag) {
-                case '+': if(str !== "")stack.push(temp);str = '';break
-                case '-': if(str !== "")stack.push(-temp);str = '';break
-                case '(': if(str !== "")stack.push(temp);str = '';break;
-                default: break
-            }
+    let flag = 1;
+    let ops = [1];
+    let res = 0;
+    let n = s.length;
 
-            flag = s[i];
-            
+    let i = 0;
+    while (i < n ) {
+        if (s[i] === ' ') {
+            i++;
+        } else if (s[i] == '+') {
+            flag = ops[ops.length - 1];
+            i++;
+        } else if (s[i] == '-') {
+            flag = -ops[ops.length - 1];
+            i++;
+        } else if(s[i] == '(') {
+            ops.push(flag);i++;
+        } else if (s[i] == ')') {
+            ops.pop();
+            i++;
+        } else {
+            let num = 0;
+            while(i < n && !(isNaN(Number(s[i]))) && s[i] !== ' ') {
+                num = num * 10 + s[i].charCodeAt() - '0'.charCodeAt();
+                i++;
+            }
+            res = res + flag * num
         }
     }
-    if (str !== '') {
-        let res = flag == '+' ? Number(str) : (-Number(str))
-        stack.push(res)
-    }
-    let ans = 0
-    while (stack.length) {
-        ans += stack.pop()
-    }
-    return ans;
+    return res;
 };
 // @lc code=end
 
