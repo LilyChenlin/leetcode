@@ -42,17 +42,16 @@
  * 边界条件，当链表为null或链表中仅有一个节点时，不需要反转
  */
 var reverseList = function(head) {
-    if (!head || !head.next) return head
-    let prev = null, cur = head;
+    if (!head || !head.next) return head;
+    let cur = head, prev = null;
     while(cur) {
-        // 记录下一个节点
-        var next = cur.next;
+        let next = cur.next;
         cur.next = prev;
-        prev = cur
-        cur = next
+        prev = cur;
+        cur = next;
     }
     head = prev;
-    return head;
+    return prev;
 };
 // @lc code=end
 
