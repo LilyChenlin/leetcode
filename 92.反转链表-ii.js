@@ -24,23 +24,42 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var reverseBetween = function(head, m, n) {
-    let nextTail = null;
-    let reverseN = (head,n) => {
-        if(n == 1){
-            nextTail = head.next;
-            return head; 
-        }
-        let last = reverseN(head.next,n-1);
-        head.next.next = head;
-        head.next = nextTail;
-        return last;
+    const dummyNode = new ListNode(0);
+    dummyNode.next = head;
+
+    let pre = dummyNode;
+    
+
+    for (let i = 0; i < m - 1; i++) {
+        pre = pre.next
     }
-    if(m == 1){
-        return reverseN(head,n);
+    let rightNode = pre;
+    for (let i = 0; i < n - m + 1; i++) {
+        rightNode = rightNode.next;
     }
-    head.next = reverseBetween(head.next,m-1,n-1);
-    return head;
+
+    let leftNode = pre.next;
+    let cur = rightNode.next;
+    pre.next = null;
+    rightNode.next = null;;
+
+    reverse(leftNode);
+    pre.next = rightNode;
+    leftNode.next = cur;
+    return dummyNode.next;
+
 };
 
+var reverse = (head) => {
+    if (head == null || head.next == null) return head;
+    let pre = null, cur = head;
+    while (cur) {
+        const next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+
+}
 // @lc code=end
 
