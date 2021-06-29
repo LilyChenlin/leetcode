@@ -44,46 +44,24 @@
  * 解法一：迭代
  */
 var mergeTwoLists = function(l1, l2) {
-    var res = {};
-    var pHead = res;
-    if (l1 == null) {
-        return l2
-    }
-    if (l2 == null) {
-        return l1
-    }
-    while (l1 !== null && l2 !== null) {
-        if (l1.val < l2.val) {
-            pHead.next = l1;
+    let dummyHead = head = new ListNode(0);
+    while (l1 !== null || l2 !== null) {
+        if (l1 == null) {
+            dummyHead.next = l2;
+            break;
+        } else if (l2 == null) {
+            dummyHead.next = l1;
+            break;
+        } else if (l1.val <= l2.val) {
+            dummyHead.next = new ListNode(l1.val);
             l1 = l1.next;
-        } else {
-            pHead.next = l2;
-            l2 = l2.next
+        } else if (l1.val > l2.val){
+            dummyHead.next = new ListNode(l2.val);
+            l2 = l2.next;
         }
-        pHead = pHead.next;
+        dummyHead = dummyHead.next;
     }
-    pHead.next = l1 == null ? l2 : l1;
-    return res.next
-};
-/**
- * 解法二：递归
- */
-var mergeTwoLists = function(l1, l2) {
-    var res = {};
-    if (l1 == null) {
-        return l2
-    }
-    if (l2 == null) {
-        return l1
-    }
-    if (l1.val < l2.val) {
-        res = l1;
-        l1.next = mergeTwoLists(l1.next, l2);
-    } else {
-        res = l2;
-        l2.next = mergeTwoLists(l1, l2.next)
-    }
-    return res
+    return head.next;
 };
 // @lc code=end
 
