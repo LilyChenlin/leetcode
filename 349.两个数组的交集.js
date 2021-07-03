@@ -46,17 +46,28 @@
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
-    if(!nums1.length || !nums2.length) {
-        return [];
-    }
-    let set1 = new Set(nums1);
-    let set2 = new Set();
-    nums2.forEach(item => {
-        if (set1.has(item)) {
-            set2.add(item)
+    nums1 = nums1.sort((x, y) => x - y);
+    nums2 = nums2.sort((x, y) => x - y);
+    let idx1 = 0, idx2 = 0;
+    let res = new Map();
+    while (idx1 < nums1.length && idx2 < nums2.length) {
+        if (nums1[idx1] == nums2[idx2]) {
+            res.has(nums1[idx1]) ? null  : res.set(nums1[idx1], 1);
+            idx1++;
+            idx2++;
+        } else if (nums1[idx1] < nums2[idx2]) {
+            idx1++;
+        } else {
+            idx2++;
         }
-    })
-    return [...set2]; // 将Set数据结构转化为数组
+    }
+    let mapRes = [];
+    for (let key of res.keys()) {
+        mapRes.push(key)
+    }
+    return mapRes;
+
+
 };
 // @lc code=end
 
