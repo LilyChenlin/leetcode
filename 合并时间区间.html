@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function mergeTimeRanges(ranges){ 
+        ranges = ranges.sort();
+        let res = [];
+        let temp = ranges[0];
+        let endTime = ranges[0][1];
+        let startTime = ranges[0][0];
+        for (let i = 1; i < ranges.length; i++) {
+            let item = ranges[i];
+            const start = item[0];
+            const end = item[1];
+            if (start <= endTime){
+                temp = [startTime, end];
+                endTime = end;
+            } else {// 如果没有重合的部分
+                if (temp.length > 0) {
+                    res.push(temp);
+                } else {
+                    res.push(item)
+                }
+                temp = item;
+                endTime = end;
+                startTime = start;
+            }
+        }  
+        return res;
+        }
+        const res = mergeTimeRanges([
+            ["23:00","23:50"],
+            ["00:00","01:00"],
+            ["00:30","01:20"],
+            ["22:00","22:50"],
+            ["03:00","03:20"],
+            ["03:20","03:40"],
+        ])
+        console.log(res)
+    </script>
+</body>
+</html>
