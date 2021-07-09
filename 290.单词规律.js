@@ -49,27 +49,28 @@
  * @return {boolean}
  */
 var wordPattern = function(pattern, s) {
-    let pArr = pattern.split('');
-    let sArr = s.split(' ');
-    const patternLength = pArr.length;
-    const sLength = sArr.length;
-    if (patternLength !== sLength) return false;
-    if (!patternLength && !sLength) return true;
-    let paMap = new Map();
-    let sMap = new Map();
-    for (let i = 0; i < patternLength; i++) {
-        const paChar = pArr[i];
-        const sChar = sArr[i];
-        if (!paMap.has(paChar)) {
-            paMap.set(paChar, sChar);
+    s = s.split(" ");
+    if (s.length !== pattern.length) return false
+    let storeStr = [];
+    let patternMap = new Map();
+    let i = 0;
+    while (i < pattern.length) {
+        let strItem = s[i];
+        const patternItem = pattern[i];
+        // 如果map中存在这个值
+        if (patternMap.has(patternItem)) {
+            const temp = patternMap.get(patternItem);
+            if (temp !== strItem) {
+                return false
+            }
         } else {
-            if (paMap.get(paChar) !== sChar) {return false}
+            if (storeStr.indexOf(strItem) >= 0) {
+                return false;
+            }
+            patternMap.set(patternItem, strItem);
+            storeStr.push(strItem);
         }
-        if (!sMap.has(sChar)) {
-            sMap.set(sChar, paChar);
-        } else {
-            if (sMap.get(sChar) !== paChar) {return false}
-        }
+        i++;
     }
     return true;
 };
