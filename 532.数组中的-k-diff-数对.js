@@ -11,20 +11,19 @@
  * @return {number}
  */
 var findPairs = function(nums, k) {
-    nums = nums.sort((a, b) => {return a - b});
-    let left = 0, right = 1;
-    let count = 0;
-    while(left < nums.length && right < nums.length) {
-        if(nums[right] - nums[left] == k) {
-            count++;
+    if (k < 0) {return 0};
+    let visit = new Set(), map = new Set();
+    for (let n of nums) {
+        if (visit.has(n - k)) {
+            map.add(n - k);
+        } 
+
+        if (visit.has(n + k)) {
+            map.add(n);
         }
-        right++;
-        if (right == nums.length - 1) {
-            left++;
-            right = left + 1;
-        }
+        visit.add(n);
     }
-    return count;
+    return map.size;
 };
 // @lc code=end
 
