@@ -47,27 +47,26 @@
  * @return {boolean}
  */
 var isIsomorphic = function(s, t) {
-    let sLength = s.length;
-    let tLength = t.length;
-    if (sLength !== tLength) {return false}
-    if (!sLength && !tLength) {return true}
-    const sMap = new Map();
-    const tMap = new Map();
-    for (let i = 0; i < sLength; i++) {
-        const sChar = s[i];
-        const tChar = t[i];
-        if (!sMap.has(sChar)) {
-            sMap.set(sChar, tChar);
+    if (s.length !== t.length) return false;
+    let sMap = new Map();
+    let seted = [];
+    for (let i = 0; i < s.length; i++) {
+        let sItem = s[i];
+        let tItem = t[i];
+        if (sMap.has(sItem)) {
+            if (tItem !== sMap.get(sItem)) {
+                return false;
+            }
         } else {
-            if (sMap.get(sChar) !== tChar) {return false}
-        }
-        if (!tMap.has(tChar)) {
-            tMap.set(tChar, sChar);
-        } else {
-            if (tMap.get(tChar) !== sChar) {return false}
+            if (seted.indexOf(tItem) !== -1) {
+                return false
+            } else {
+                sMap.set(sItem, tItem);
+                seted.push(tItem)
+            }
         }
     }
-    return true;
+    return true
 };
 // @lc code=end
 
