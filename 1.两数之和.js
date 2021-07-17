@@ -36,21 +36,27 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let map = new Map();
-    let len = nums.length;
-    let diff = 0; 
-    let res = [];
-    for (let i = 0; i < len; i++) {
-        diff = target - nums[i];
-        let diffVal = map.get(diff);
-        if (map.has(diff) && diffVal !== i) {
+    let res = [0];
+    let i = 1, tempI = 0;
+    let rest = target - nums[0];
+    while (i < nums.length || res.length < 2) {
+        const temp = nums[i];
+        rest = rest - temp;
+        if (rest == 0) {
             res.push(i);
-            res.push(diffVal);
             return res;
+        } else {
+            rest = rest + temp;
         }
-        map.set(nums[i], i);
+        if (i == nums.length - 1) {
+            tempI++;
+            i = tempI;
+            rest = target - nums[i];
+            res = [i];            
+        }
+        i++;
+
     }
-     
 };
 // @lc code=end
 
