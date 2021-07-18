@@ -11,16 +11,14 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    // 有序数组 -> 考虑双指针
-    var left = 0, right = numbers.length - 1;
+    let left = 0, right = numbers.length - 1;
     while (left < right) {
-        let sum = numbers[left] + numbers[right]
-        if (sum == target) {
-            return [left + 1, right + 1]
-        } else if (sum < target) {
+        if ((numbers[left] + numbers[right]) > target) {
+            right--;
+        } else if ((numbers[left] + numbers[right]) < target){
             left++;
         } else {
-            right--;
+            return [left + 1, right + 1]
         }
     }
 };
