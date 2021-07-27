@@ -48,29 +48,18 @@
  * @return {number}
  */
 var fourSumCount = function(A, B, C, D) {
-    const len = A.length;
-    let map = new Map();
-    let count = 0;
-    if(!len) return 0;
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len; j++) {
-            let sum = C[i] + D[j];
-            if (!map.has(sum)) {
-                map.set(sum, 1)
-            } else {
-                map.set(sum, map.get(sum) + 1)
+    let mapAB = new Map();
+    A.forEach(a => B.forEach(b => mapAB.set(b + a, (mapAB.get(b + a) || 0) + 1)));
+    let res = 0;
+    for (let c of C) {
+        for (let d of D) {
+            let sum = c + d;
+            if (mapAB.has(-sum)) {
+                res += mapAB.get(-sum);
             }
         }
     }
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len; j++) {
-            const sumCD = 0 - A[i] - B[j];
-            if (map.has(sumCD)) {
-                count += map.get(sumCD);
-            }
-        }
-    }
-    return count;
+    return res;
 };
 // @lc code=end
 
