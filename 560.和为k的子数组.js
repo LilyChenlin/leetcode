@@ -38,23 +38,17 @@
  * @return {number}
  */
 var subarraySum = function(nums, k) {
-    let len = nums.length;
-    let map = new Map();
-    map.set(0, 1);
-    let prefixNum = 0;
-    let res = 0;
-    for (let i = 0; i < len; i++) {
-        prefixNum += nums[i];
-        if (map.has(prefixNum - k)) {
-            res += map.get(prefixNum - k)
+    const mp = new Map();
+    mp.set(0, 1);
+    let count = 0, pre = 0;
+    for (let i = 0; i < nums.length; i++) {
+        pre += nums[i];
+        if (mp.has(pre - k)) {
+            count += mp.get(pre - k)
         }
-        if (map.has(prefixNum)) {
-            map.set(prefixNum, map.get(prefixNum) + 1);
-        } else {
-            map.set(prefixNum, 1)
-        }
+        mp.set(pre, (mp.get(pre) || 0) + 1)
     }
-    return res;
+    return count;
 };
 // @lc code=end
 
