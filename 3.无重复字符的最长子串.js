@@ -10,22 +10,20 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    var left = 0, right = 0;
-    var res = 0;
-    var window = new Map();
-    while (right < s.length) {
-        var c =  s[right];
-        right++;
-        window.set(c, window.has(c) ? window.get(c) + 1 : 1);
-        // 缩小左窗口
-        while (window.get(c) > 1) {
-            var d = s[left];
-            left++;
-            window.set(d, window.has(d) ? window.get(d) - 1 : -1)
+    if (s.length == 0) return 0;
+    let str = '';
+    let maxLen = 0;
+    for (let i = 0; i < s.length; i++) {
+        if (str.indexOf(s[i]) == -1) {
+            str += s[i]
+        } else {
+            maxLen = Math.max(maxLen, str.length)
+            let lsIdx = str.indexOf(s[i]);
+            str = str.substring(lsIdx + 1);
+            str += s[i];
         }
-        res = Math.max(right - left, res)
     }
-    return res;
+    return Math.max(str.length, maxLen);
 };
 // @lc code=end
 
