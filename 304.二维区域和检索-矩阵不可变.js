@@ -42,26 +42,28 @@
  */
 
 
-// 二维数组解法
+// 1维数组解法
 
 var NumMatrix = function(matrix) {
-    const n = matrix.length;
-    if (n > 0 ) {
+    // 前缀和
+    let len = matrix.length;
+    if (len > 0) {
         const m = matrix[0].length;
-        this.sums = new Array(n + 1).fill(0).map(() => new Array(m + 1).fill(0));
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < m; j++){
-                this.sums[i + 1][j + 1] = this.sums[i][j + 1] + this.sums[i + 1][j] - this.sums[i][j] + matrix[i][j];
+        this.sums = new Array(len).fill(0).map(() => new Array(m + 1).fill(0));
+        for (let i = 0; i < len; i++) {
+            for (let j = 0; j < m; j++) {
+                this.sums[i][j + 1] = this.sums[i][j] + matrix[i][j]
+            }
         }
     }
-
 }   
 
-};
 
 NumMatrix.prototype.sumRegion = function(row1, col1, row2, col2) {
     let sum = 0;
-    sum = this.sums[row2 + 1][col2 + 1] - this.sums[row1][col2 + 1] - this.sums[row2 + 1][col1] + this.sums[row1][col1]
+    for (let i = row1; i <= row2; i++) {
+        sum += this.sums[i][col2 + 1] - this.sums[i][col1]
+    }
     return sum;
 };
 
