@@ -35,6 +35,12 @@
  * @param {number} target
  * @return {number[]}
  */
+
+/**
+ * 解法一  效率不高的解法
+ * @param {*} nums 
+ * @param {*} target 
+ */
 var twoSum = function(nums, target) {
     let res = [0];
     let i = 1, tempI = 0;
@@ -58,5 +64,16 @@ var twoSum = function(nums, target) {
 
     }
 };
+
+
+var twoSum = function (nums, target) {
+    let map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (map.has(target - nums[i])) {
+            return [i, map.get(target - nums[i])]
+        }
+        map.set(nums[i], i) 
+    }
+}
 // @lc code=end
 
