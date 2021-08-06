@@ -11,18 +11,28 @@
  * @return {boolean}
  */
 var canPlaceFlowers = function(flowerbed, n) {
+    let count = 0; 
+    let m = flowerbed.length;
+    let prev = -1;
     for (let i = 0; i < flowerbed.length; i++) {
-        if (n == 0) {
-            break;
-        }
-        if (flowerbed[i] == 0) {
-            if ((flowerbed[i - 1] == 0 || i == 0)  && (flowerbed[i + 1] !== 1 || i == flowerbed.length - 1)) {
-                flowerbed[i] = 1;
-                n--;
+        if (flowerbed[i] == 1) {
+            if (prev < 0) {
+                count += Math.floor(i / 2);
+            } else {
+                count += Math.floor((i - prev -2 ) / 2);
             }
+            if (count >= n) {
+                return true
+            }
+            prev = i;
         }
     }
-    return n == 0;
+    if (prev < 0) {
+        count += (m + 1) / 2;
+    } else {
+        count += (m - prev - 1) / 2;
+    }
+    return count >= n;
 };
 // @lc code=end
 
