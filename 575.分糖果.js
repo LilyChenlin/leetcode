@@ -52,16 +52,19 @@
  */
 var distributeCandies = function(candyType) {
     let len = candyType.length;
-    let mid = len / 2; // 由于均分-> 可以整除2
-    const map = new Map();
+    let avgLen = len / 2;
+    let map = new Map();
     for (let i = 0; i < len; i++) {
-        map.set(candyType[i], map.has(candyType[i]) ? map.get(candyType[i] + 1) : 1);
+        map.set(candyType[i], (candyType[i] + 1 || 1));
     }
-    let count = map.size;
-    if (count >= mid) {
-        return mid;
+    let type = 0;
+    for (let key of map.keys()) {
+        if (avgLen > 0) {
+            type++;
+            avgLen--;
+        }
     }
-    return count;
+    return type;
 };
 // @lc code=end
 
