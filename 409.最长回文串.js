@@ -41,16 +41,17 @@
  * @return {number}
  */
 var longestPalindrome = function(s) {
-    const map = new Map();
-    let len = 0;
-    for (let i of s) {
-        map.set(map.has(i) ? map.set(i, map.get(i) + 1) : map.set(i, 1));
-        if (map.get(i) === 2) {
-            len += 2;
-            map.set(i, 0);
+    let n = s.length;
+    let map = new Map();
+    let res = 0;
+    for (let i = 0; i < n; i++) {
+        map.set(s[i], (map.get(s[i]) + 1 || 1))
+        if (map.get(s[i]) % 2 == 0) {
+            res += 2;
+            map.delete(s[i])
         }
     }
-    return len === s.length ? len : len + 1
+    return map.size > 0 ? res += 1 : res;
 
 };
 // @lc code=end
