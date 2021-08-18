@@ -11,20 +11,29 @@
  * @return {number[][]}
  */
 var insert = function(intervals, newInterval) {
-    intervals.push(newInterval);
-    console.log(intervals)
-    intervals.sort((a, b) => a[0] - b[0]);
-    let res = [];
+    let left = newInterval[0];
+    let right = newInterval[1];
+    let ans = [];
+    let placed = false;
     for (let i = 0; i < intervals.length; i++) {
-        let left = intervals[i][0];
-        let right = intervals[i][1];
-        while (i < intervals.length - 1 && right >= intervals[i + 1][0]) {
-            right = Math.max(right, intervals[i + 1][1]);
-            i++;
+        // 在插入区间的右侧 并且没有交集
+        if (intervals[i][0] > right) {
+            if (!placed) {
+                ans.push([left, right])
+                placed = true;
+            }
+            ans.push(intervals[i]);
+        } else if (intervals[i][1] < left) {
+            ans.push(intervals[i]);
+        } else {
+            left = Math.min(left, intervals[i][0]);
+            right = Math.max(right, intervals[i][1]);
         }
-        res.push([left, right]);
     }
-    return res;
+    if (!placed) {
+        ans.push([left, right]);
+    }
+    return ans;
 };
 // @lc code=end
 
