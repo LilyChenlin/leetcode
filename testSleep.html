@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. async/await 实现指定多少毫秒后输出一个值
+        // function timeout(ms) {
+        //     return new Promise((resolve) => {
+        //         setTimeout(resolve, ms);
+        //     })
+        // }
+
+        // async function asyncPrint(value, ms) {
+        //     console.log("start", new Date)
+        //     await timeout(ms); // 只有用了这个才能等待
+        //     console.log(value, new Date);
+        // }
+        // asyncPrint('lily', 3000)
+
+        // 2. 由于async/await 返回的是一个promise，所以可以改写为如下
+        async function timeout(value, ms) {
+            await new Promise((resolve, reject) => {
+                setTimeout(resolve, ms);
+            })
+            console.log(value, new Date)
+        }
+
+        async function f() {
+            console.log(new Date);
+            await timeout('第一个await', 1000)
+            throw Error('出错了')
+            await timeout('第二个await', 3000)
+        }
+        f().then(
+            v => console.log(v, new Date), 
+            e => console.log('reject', e))
+    </script>
+
+</body>
+</html>

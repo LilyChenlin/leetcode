@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var predictPartyVictory = function(senate) {
+    let radiant = [], dire = [];
+    let n = senate.length;
+
+    for (let i = 0; i < n; i++) {
+        if (senate[i] == 'R') {
+            radiant.push(i);
+        } else {
+            dire.push(i)
+        }
+    }
+
+    while (radiant.length > 0 && dire.length > 0) {
+        if (radiant[0] < dire[0]) {
+            radiant.push(radiant[0] + n)
+        } else {
+            dire.push(dire[0] + n)
+        }
+        radiant.shift();
+        dire.shift();
+    }
+    return radiant.length > 0 ? 'Radiant' : 'Dare'
+};
+
+const res = predictPartyVictory("RDD")
+console.log(res)
+</script>
+
+
+
+
+</body>
+</html>
