@@ -10,31 +10,27 @@
  * @return {number}
  */
 var findUnsortedSubarray = function(nums) {
-    let start = 0, end = 0, count = 0;
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i + 1] < nums[i]) {
-            if (count === 0) {
-                start = i;
-                count++;
-            };
-            end = i + 1;
-            swap(i, i + 1, nums);
-            let j = i;
-            while ((nums[j] < nums[j - 1]) && j > 0) {
-                if (start >= j - 1) start = j - 1;
-                swap(j - 1, j, nums);
-                j--;
-            }
-        }
+    if (isSorted(nums)) return 0;
+    // 直接升序
+    let copyNums = [...nums].sort((a, b) => a - b);
+    let left = 0, right = nums.length -1 ;
+    while(nums[left] === copyNums[left]) {
+        left++;
     }
-
-    return end - start === 0 ? 0 : end - start + 1;
+    while(nums[right] === copyNums[right]) {
+        right--;
+    }
+    return right - left + 1;
 };
 
-var swap = (left, right, nums) => {
-    let temp = nums[left];
-    nums[left] = nums[right];
-    nums[right] = temp;
+const isSorted = (nums) => {
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] < nums[i - 1]) {
+            return false;
+        }
+    }
+    return true;
 }
+
 // @lc code=end
 
