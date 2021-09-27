@@ -11,16 +11,17 @@
  * @return {number}
  */
 // 双指针解法
-var removeElement = function(nums, val) {
-    var slow = 0, fast = 0;
-    while (fast < nums.length) {
-        if (nums[fast] !== val) {
-            nums[slow] = nums[fast];
-            slow++
-        }
-        fast++
+var removeElement = function (nums, val) {
+    let left = 0, right = 0;
+    while (left < nums.length && right < nums.length) {
+        if (nums[right] !== val) {
+            nums[left] = nums[right];
+            left++;
+        } 
+        right++;
+
     }
-    return slow;
+    return  left;
 };
 // @lc code=end
 
