@@ -18,16 +18,16 @@
  */
 var deleteDuplicates = function (head) {
     if (head == null) return null;
-    let slow = head, fast = head.next;
-    while (fast !== null) {
-        if (slow.val !== fast.val) {
-            slow.next = fast;
-            slow = slow.next;
+    let cur = head;
+    while (cur.next !== null) {
+        if (cur.val === cur.next.val) {
+            cur.next = cur.next.next;
+        } else {
+            cur = cur.next;
         }
-        fast = fast.next;
     }
-    slow.next = null;
     return head;
 };
+
 // @lc code=end
 
