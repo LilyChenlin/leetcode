@@ -11,21 +11,21 @@
  * @return {number}
  */
 var minSubArrayLen = function(target, nums) {
-    let minLen = +Infinity;
     let len = nums.length;
-    for (let i = 0; i < len; i++) {
-        let start = i, arr = [], temp = target;
-        while (start < len) {
-            temp = temp - nums[start];
-            arr.push(nums[start]);
+    // 最终返回结果
+    let ans = +Infinity;
+    let start = 0, end = 0;
+    let sum = 0;
+    while (start < len && end < len) {
+        sum += nums[end];
+        while (sum >= target) {
+            ans = Math.min(ans, end - start + 1);
+            sum -= nums[start];
             start++;
         }
-        if (temp <= 0) {
-            const arrLen = arr.length;
-            minLen = Math.min(minLen, arrLen);
-        }
+        end++;
     }
-    return minLen == +Infinity ? 0 : minLen;
+    return ans === +Infinity ? 0 : ans;
 };
 // @lc code=end
 
