@@ -85,12 +85,11 @@
  * 快慢指针
  */
 var hasCycle = function(head) {
-    var slow = head, fast = head;
-    while (fast != null && fast.next != null) {
-        fast = fast.next.next;
+    let slow = head, fast = head;
+    while (fast !== null && fast.next !== null) {
         slow = slow.next;
-
-        if (fast == slow) return true;
+        fast = fast.next.next;
+        if (slow == fast) return true;
     }
     return false;
 };
