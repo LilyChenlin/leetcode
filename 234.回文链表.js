@@ -17,40 +17,40 @@
  * @return {boolean}
  */
 
-// 思路 1. 先通过快慢指针找到链表的中点
-// 2. 然后从中点开始向后的链表进行反转 反转整个链表
-// 3. 通过right和left进行一一判断
-var isPalindrome = function(head) {
-
-    // 1. 通过快慢指针找到链表的中点
-    // 分两种情况 1. 如果fast指向null，则当前链表是奇数，直接找到链表中点
-    // 2. 如果fast无法指向null，则当前链表是偶数，需要slow前进一步
-    var slow = head, fast = head;
-    while (fast !== null && fast.next !== null) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    if (fast !== null) {
-        slow = slow.next;
-    }
-    var left = head, right = reverse(slow);
+var isPalindrome = function (head) {
+    let midNode = findMid(head);
+    let left = head, right = reverse(midNode);
     while (right !== null) {
-        if (left.val !== right.val) return false;
+        if (left.val !== right.val) {
+            return false
+        }
         left = left.next;
         right = right.next;
     }
     return true;
-};
+}      
 
-var reverse = (head) => {
-    var cur = head, pre = null;
-    while(cur != null) {
-        var next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
+var findMid = function (head) {
+    // 1. 找到链表的中点
+    let slow = head, fast = head;
+    while (fast.next !== null && fast.next.next !== null) {
+        fast = fast.next.next;
+        slow = slow.next;
     }
-    return pre
+    if (fast !== null) slow = slow.next;
+    return slow;
+}
+
+var reverse = function (node) {
+    let prev = null;
+    let cur = node;
+    while (cur !== null) {
+        let temp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = temp;
+    }
+    return prev;
 }
 // @lc code=end
 
