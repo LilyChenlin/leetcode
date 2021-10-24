@@ -22,11 +22,11 @@ var checked = (start, n, nums) => {
     // 标记遍历过的数量
     let k = 1;
     while (true) {
-        const next = (((cur + nums[cur]) % n) + n) % n;
+        const next = ((cur + nums[cur]) % n + n) % n;
         if (k > n) return false;
         if (flag && nums[next] < 0) return false;
         if (!flag && nums[next] > 0) return false;
-        if (next == start) return true;
+        if (next == start) return k > 1;
         cur = next;
         k++;
     }
