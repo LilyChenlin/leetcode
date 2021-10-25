@@ -19,15 +19,21 @@
  * @return {boolean}
  */
 var isSameTree = function (p, q) {
-    if (p == null && q == null) {
-        return true;
-    } else if (p == null || q == null) {
-        return false;
-    } else if (p.val !== q.val) {
-        return false;
-    } else {
-        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right); 
+    let temp = [];
+    temp.push(p);
+    temp.push(q);
+    while (temp.length > 0) {
+        p = temp.shift();
+        q = temp.shift();
+        if (p == null && q == null) { continue };
+        if ((p == null || q == null) || (p.val !== q.val)) { return false };
+        temp.push(p.left);
+        temp.push(q.left);
+
+        temp.push(p.right);
+        temp.push(q.right);
     }
+    return true;
 };
 // @lc code=end
 
