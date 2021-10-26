@@ -18,23 +18,38 @@
  * @return {number}
  */
 var countNodes = function(root) {
-    let hl = 0, hr = 0;
-    let leftR = root, rightR = root;
-    while (leftR !== null) {
-        hl++;
-        leftR = leftR.left;
+    if (root == null) return 0;
+    let level = 0;
+    let node = root;
+    while (node.left !== null) {
+        level++;
+        node = node.left;
     }
 
-    while (rightR !== null) {
-        hr++;
-        rightR = rightR.right;
+    let low = 1 << level, high = (1 << (level + 1)) - 1;
+    while (low < high) {
+        let mid = Math.floor((high - low + 1) / 2) + low;
+        if (exits(root, level, mid)) {
+            low = mid;
+        } else {
+            high = mid - 1;
+        }
     }
-    if (hl == hr) {
-        return Math.pow(2, hl) - 1
-    }
-    return 1 + countNodes(root.left) + countNodes(root.right)
-
-
+    return low;
 };
+
+var exits = (root, level, mid) => {
+    let bits = 1 << (level - 1);
+    let node = root;
+    while (node !== null && bits > 0) {
+        if (!(bits & mid)) {
+            node = node.left;
+        } else {
+            node = node.right;
+        }
+        bits >>= 1
+    }
+    return node != null;
+}
 // @lc code=end
 
