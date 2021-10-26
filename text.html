@@ -7,32 +7,39 @@
 </head>
 <body>
     <script>
-var predictPartyVictory = function(senate) {
-    let radiant = [], dire = [];
-    let n = senate.length;
+    var findSubstring = function (s, words) {debugger
 
-    for (let i = 0; i < n; i++) {
-        if (senate[i] == 'R') {
-            radiant.push(i);
-        } else {
-            dire.push(i)
+
+        let left = 0, right = 0, len = s.length;
+        let res = [];
+        let k = words[0].length;
+        while (right < len) {
+            right = left + k;
+            let temp = s.substring(left, right);
+            let copyLeft = left, copyRight = right, valid = 0;
+            let need = new Map();
+            for (let i = 0; i < words.length; i++) {
+                need.set(words[i], need.get(words[i]) + 1 || 1);
+            }
+            while (need.get(temp) > 0 && copyRight <= len) {
+                valid++;
+                need.set(temp, need.get(temp) - 1 || -1);
+                if (valid === words.length) {
+                    res.push(left);
+                    valid = 0;
+                    break;
+                }
+                copyLeft = copyRight;
+                copyRight = copyRight + k;
+                temp = s.substring(copyLeft, copyRight);
+            }
+            left++;
         }
-    }
+        return res;
+    };
 
-    while (radiant.length > 0 && dire.length > 0) {
-        if (radiant[0] < dire[0]) {
-            radiant.push(radiant[0] + n)
-        } else {
-            dire.push(dire[0] + n)
-        }
-        radiant.shift();
-        dire.shift();
-    }
-    return radiant.length > 0 ? 'Radiant' : 'Dare'
-};
-
-const res = predictPartyVictory("RDD")
-console.log(res)
+    let res = findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"])
+    console.log(res)
 </script>
 
 

@@ -12,7 +12,7 @@
 var maxSubArray = function(nums) {
     let ans = nums[0];
     let total = 0; // 前缀和
-    for (let i = 1; i < nums.length; i++) {
+    for (let i = 0; i < nums.length; i++) {
         if (total > 0) {
             total += nums[i]
         } else {

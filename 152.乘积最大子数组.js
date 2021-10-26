@@ -10,17 +10,19 @@
  * @return {number}
  */
 var maxProduct = function(nums) {
-    let maxNum = -Infinity, len = nums.length;
-    if (len == 1) return nums[0]
-    for (let i = 0; i < len; i++) {
-        let total = nums[i];
-        maxNum = Math.max(total, maxNum)
-        for (let j = i + 1; j < len; j++) {
-            total = total * nums[j];
-            maxNum = Math.max(total, maxNum);
+    let max = -Infinity, iMax = 1, iMin = 1;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] < 0) {
+            let temp = iMax;
+            iMax = iMin;
+            iMin = temp;
         }
+        iMax = Math.max(iMax * nums[i], nums[i]);
+        iMin = Math.min(iMin * nums[i], nums[i]);
+
+        max = Math.max(iMax, max)
     }
-    return maxNum
+    return max;
 };
 // @lc code=end
 

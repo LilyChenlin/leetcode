@@ -15,6 +15,7 @@ var nextGreaterElements = function(nums) {
     let stack = [];
     for (let i = 0; i < len * 2 - 1; i++) {
         while (stack.length > 0 && nums[stack[stack.length - 1]] < nums[i % len]) {
+            if (res[stack.pop()] !== -1) continue;
             res[stack.pop()] = nums[i % len]
         }
         stack.push(i % len)
