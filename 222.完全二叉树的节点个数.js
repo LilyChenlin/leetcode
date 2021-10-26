@@ -19,21 +19,22 @@
  */
 var countNodes = function(root) {
     let hl = 0, hr = 0;
-    let lRoot = root, rRoot = root;
-    while(lRoot !== null) {
-        lRoot = lRoot.left;
+    let leftR = root, rightR = root;
+    while (leftR !== null) {
         hl++;
-    }
-    while(rRoot !== null) {
-        rRoot = rRoot.right;
-        hr++
+        leftR = leftR.left;
     }
 
-    // 如果左右子树相同，则是一棵满二叉树
-    if (hl === hr) {
-        return Math.pow(2, hl) - 1;
+    while (rightR !== null) {
+        hr++;
+        rightR = rightR.right;
     }
-    return 1 + countNodes(root.left) + countNodes(root.right);
+    if (hl == hr) {
+        return Math.pow(2, hl) - 1
+    }
+    return 1 + countNodes(root.left) + countNodes(root.right)
+
+
 };
 // @lc code=end
 
