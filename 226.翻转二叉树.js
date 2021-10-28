@@ -49,27 +49,45 @@
  * }
  */
 /**
+ * @description 迭代实现反转二叉树
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var invertTree = function(root) {
-    let queue = [];
-    queue.push(root);
-    while (queue.length > 0) {
-        let temp = queue.shift();
+// var invertTree = function(root) {
+//     let queue = [];
+//     queue.push(root);
+//     while (queue.length > 0) {
+//         let temp = queue.shift();
 
-        let left = temp.left;
-        temp.left = temp.right;
-        temp.right = left;
+//         let left = temp.left;
+//         temp.left = temp.right;
+//         temp.right = left;
 
-        if (temp.left !== null) {
-            queue.push(temp.left);
-        }
-        if (temp.right !== null) {
-            queue.push(temp.right);
-        }
-    }
+//         if (temp.left !== null) {
+//             queue.push(temp.left);
+//         }
+//         if (temp.right !== null) {
+//             queue.push(temp.right);
+//         }
+//     }
+//     return root;
+// };
+
+/**
+ * @description 递归实现反转二叉树
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function (root) {
+    if (root == null) return null;
+
+    let temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    invertTree(root.left);
+    invertTree(root.right);
     return root;
-};
+}
 // @lc code=end
 
