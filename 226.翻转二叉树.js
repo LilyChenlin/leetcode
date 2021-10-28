@@ -53,14 +53,22 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-    if (root == null) {
-        return null
+    let queue = [];
+    queue.push(root);
+    while (queue.length > 0) {
+        let temp = queue.shift();
+
+        let left = temp.left;
+        temp.left = temp.right;
+        temp.right = left;
+
+        if (temp.left !== null) {
+            queue.push(temp.left);
+        }
+        if (temp.right !== null) {
+            queue.push(temp.right);
+        }
     }
-    let temp = root.right;
-    root.right = root.left;
-    root.left = temp;
-    invertTree(root.left);
-    invertTree(root.right);
     return root;
 };
 // @lc code=end
