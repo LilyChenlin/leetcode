@@ -81,6 +81,9 @@
 var invertTree = function (root) {
     if (root == null) return null;
 
+    /**
+     * 交换节点
+     */
     let temp = root.left;
     root.left = root.right;
     root.right = temp;
