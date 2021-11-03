@@ -57,23 +57,22 @@
 var flatten = function(root) {
     if (root == null) return null;
 
-    flatten(root.left)
-    flatten(root.right)
+    // 拉平链表
+    flatten(root.left);
+    flatten(root.right);
 
+    // 将左子树作为右子树
     let left = root.left;
     let right = root.right;
-    let p = root;
-
-    
     root.left = null;
-    root.right = left; // 将左子树作为右子树
-
+    root.right = left;
     
-    while (p.right != null) {
+    // 将原先的右子树接过来， 找到当前子树的最末端
+    let p = root;
+    while (p.right !== null) {
         p = p.right;
     }
     p.right = right;
-
 };
 // @lc code=end
 
