@@ -55,23 +55,26 @@ var buildTree = function(preorder, inorder) {
     let root = build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     return root;
 };
-var build = function (preorder, preStart, preEnd, inorder, inStart, inEnd) {
-    if (preStart > preEnd) {return null};
 
-    // 找出root根节点
-    const rootVal = preorder[preStart];
-
-    // 找出根节点在inorder中的index
-    const index = inorder.indexOf(rootVal);
-
+/**
+ * @description 构建二叉树
+ * @param {Array} preorder 前序数组
+ * @param {Array} 
+ */
+let build = function (preorder, preStart, preEnd, inorder, inStart, inEnd) {
+    if (preStart > preEnd) {return null}
+    
+    // 从前序遍历数组中找到root根节点
+    let rootVal = preorder[preStart];
     let root = new TreeNode(rootVal);
 
-    // 计算出左侧树的大小
-    const leftLength = index - inStart;
-    root.left = build(preorder, preStart + 1, preStart + leftLength, inorder, inStart, index - 1 )
-    root.right = build(preorder, preStart + leftLength + 1, preEnd,  inorder, index + 1, inEnd);
+    let rootIndex = inorder.indexOf(rootVal);
+
+    const leftLength = rootIndex - inStart;
+    root.left = build(preorder, preStart + 1, preStart + leftLength, inorder, inStart, rootIndex - 1);
+    root.right = build(preorder, preStart + leftLength + 1, preEnd, inorder, rootIndex + 1, inEnd);
+
     return root;
 }
-
 // @lc code=end
 
