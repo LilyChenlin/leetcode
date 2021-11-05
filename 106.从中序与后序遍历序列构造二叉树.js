@@ -57,18 +57,15 @@ var buildTree = function(inorder, postorder) {
 };  
 
 var build = function (inorder, inStart, inEnd, postorder, postStart, postEnd) {
-    if (inStart > inEnd) { return null };
+    if (inStart > inEnd) return null;
+    
+    let midVal = postorder[postEnd];
+    let midIndex = inorder.indexOf(midVal);
 
-    // 从后序遍历中找到根节点
-    const rootVal = postorder[postEnd];
-    const rootIndx = inorder.indexOf(rootVal);
-
-    let root = new TreeNode(rootVal);
-
-    let leftSize = rootIndx - inStart;
-
-    root.left = build(inorder, inStart, rootIndx - 1, postorder, postStart, leftSize + postStart - 1);
-    root.right = build(inorder, rootIndx + 1, inEnd, postorder, postStart + leftSize, postEnd - 1);
+    let root = new TreeNode(midVal);
+    let leftLen = midIndex - inStart;
+    root.left = build(inorder, inStart, midIndex - 1, postorder, postStart, postStart + leftLen - 1);
+    root.right = build(inorder, midIndex + 1, inEnd, postorder, postStart + leftLen, postEnd - 1);
     return root;
 }
 // @lc code=end
