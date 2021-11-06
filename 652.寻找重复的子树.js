@@ -17,31 +17,25 @@
  * @param {TreeNode} root
  * @return {TreeNode[]}
  */
-var findDuplicateSubtrees = function(root) {
-    // 用来记录遍历过的子树
+var findDuplicateSubtrees = function(node) {
     const count = new Map();
-    const res = []; // 返回最后的结果
+    const res = [];
 
-    // 使用后序遍历
-    const collect = (node) => {
-        if (!node) {
+    let build = (root) => {
+        if (!root) {
             return '#';
-        } 
-        const left = collect(node.left);
-        const right = collect(node.right);
-        const key = node.val + ',' + left + ',' + right;
-        if (count.has(key)) {
-            count.set(key, count.get(key) + 1)
-        } else {
-            count.set(key, 1)
         }
-        if (count.get(key) === 2) {
-            res.push(node);
-        }
-        return key;
-    }
-    collect(root);
+        let left = build(root.left);
+        let right = build(root.right);
+        let String = left + ',' + right + ',' + root.val;
 
+        count.set(String, count.get(String) + 1 || 1);
+        if (count.get(String) === 2) {
+            res.push(root);
+        }
+        return String;
+    }
+    build(node);
     return res;
 };
 // @lc code=end
