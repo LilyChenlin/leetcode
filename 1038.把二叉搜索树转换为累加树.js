@@ -18,17 +18,15 @@
  * @return {TreeNode}
  */
 var bstToGst = function(root) {
-    let num = 0;
-
-    const loopTree = (root) => {
-        if (root == null) return;
-
-        loopTree(root.right);
-        num += root.val;
-        root.val = num;
-        loopTree(root.left);
+    let sum = 0;
+    let loop = (root) => {
+        if (root == null) return null;
+        loop(root.right);
+        sum += root.val;
+        root.val = sum;
+        loop(root.left);
     }
-    loopTree(root);
+    loop(root);
     return root;
 };
 // @lc code=end
