@@ -19,13 +19,12 @@
  */
 
 var isValidBST = function(root) {
-    return booleanBST(root, null, null)
+   return booleanBST(root, null, null)
 };
-
-var booleanBST = function (root, min, max) {
+var booleanBST = (root, min, max) => {
     if (root == null) return true;
-    if (min != null && min.val >= root.val) return false;
-    if (max != null && max.val <= root.val) return false; 
+    if (min !== null && min.val >= root.val) return false;
+    if (max !== null && max.val <= root.val) return false;
     return booleanBST(root.left, min, root) && booleanBST(root.right, root, max);
 }
 // @lc code=end
