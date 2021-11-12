@@ -19,22 +19,41 @@
  * @param {number} id
  * @return {number}
  */
+// var GetImportance = function (employees, id) {
+//     const map = new Map();
+//     for (let item of employees) {
+//         map.set(item.id, item);
+//     }
+//     const dfs = (id) => {
+//         const employ = map.get(id);
+//         let subordinates = employ.subordinates;
+//         let total = employ.importance;
+
+//         for (let i = 0; i < subordinates.length; i++) {
+//             total += dfs(subordinates[i])
+//         }
+//         return total;
+//     }
+//     return dfs(id);
+// };
+
 var GetImportance = function (employees, id) {
     const map = new Map();
     for (let item of employees) {
         map.set(item.id, item);
     }
-    const dfs = (id) => {
-        const employ = map.get(id);
-        let subordinates = employ.subordinates;
-        let total = employ.importance;
 
-        for (let i = 0; i < subordinates.length; i++) {
-            total += dfs(subordinates[i])
-        }
-        return total;
+    const stack = [];
+    let res = 0;
+    stack.push(id);
+    while (stack.length > 0) {
+        const employId = stack.shift();
+        let employ = map.get(employId);
+        res += employ.importance;
+        let subordinates = employ.subordinates;
+        stack.push(...subordinates)
     }
-    return dfs(id);
-};
+    return res;
+}
 // @lc code=end
 
