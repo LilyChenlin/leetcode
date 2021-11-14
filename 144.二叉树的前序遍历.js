@@ -17,16 +17,33 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function(root) {
-    let res = [];
+// var preorderTraversal = function(root) {
+//     let res = [];
 
-    let loop = (root) => {
-        if (root == null) return;
-        res.push(root.val);
-        loop(root.left)
-        loop(root.right)
+//     let loop = (root) => {
+//         if (root == null) return;
+//         res.push(root.val);
+//         loop(root.left)
+//         loop(root.right)
+//     }
+//     loop(root);
+//     return res;
+// };
+var preorderTraversal = function (root) {
+    let res = [];
+    if (root == null) return res;
+
+    let stack = [];
+    let node = root;
+    while (stack.length > 0 || node !== null) {
+        while (node !== null) {
+            res.push(node.val);
+            stack.push(node);
+            node = node.left;
+        }
+        node = stack.pop();
+        node = node.right;
     }
-    loop(root);
     return res;
 };
 // @lc code=end
