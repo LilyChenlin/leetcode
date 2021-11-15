@@ -17,20 +17,34 @@
  * @param {Node|null} root
  * @return {number[]}
  */
-var preorder = function(root) {
+// var preorder = function(root) {
+//     let res = [];
+
+//     let loop = (root) => {
+//         if (root == null) return null;
+
+//         res.push(root.val);
+
+//         for (let i = 0; i < root.children.length; i++) {
+//             loop(root.children[i])
+//         }
+//     }
+//     loop(root);
+//     return res;
+// };
+
+var preorder = function (root) {
+    if (root == null) return [];
+    let stack = [root];
     let res = [];
-
-    let loop = (root) => {
-        if (root == null) return null;
-
-        res.push(root.val);
-
-        for (let i = 0; i < root.children.length; i++) {
-            loop(root.children[i])
+    while (stack.length > 0) {
+        let node = stack.pop();
+        res.push(node.val);
+        for (let i = node.children.length - 1; i >= 0; i--) {
+            stack.push(node.children[i])
         }
     }
-    loop(root);
     return res;
-};
+}
 // @lc code=end
 
