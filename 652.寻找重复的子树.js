@@ -18,22 +18,22 @@
  * @return {TreeNode[]}
  */
 var findDuplicateSubtrees = function(node) {
-    const count = new Map();
-    const res = [];
+    const map = new Map();
+    let res = [];
 
-    let build = (root) => {
-        if (!root) {
-            return '#';
-        }
-        let left = build(root.left);
-        let right = build(root.right);
-        let String = left + ',' + right + ',' + root.val;
+    let build = (node) => {
+        if (!node) return '#';
 
-        count.set(String, count.get(String) + 1 || 1);
-        if (count.get(String) === 2) {
-            res.push(root);
+        let left = build(node.left);
+        let right = build(node.right);
+
+        let String = left + ',' + right + ',' + node.val;
+        map.set(String, map.get(String) + 1 || 1);
+        if (map.get(String) === 2) {
+            res.push(node);
         }
         return String;
+
     }
     build(node);
     return res;
