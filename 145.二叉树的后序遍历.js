@@ -17,17 +17,30 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var postorderTraversal = function(root) {
-    let res = [];
+// var postorderTraversal = function(root) {
+//     let res = [];
     
-    let build = (node) => {
-        if (node == null) return;
-        build(node.left)
-        build(node.right)
-        res.push(node.val)
+//     let build = (node) => {
+//         if (node == null) return;
+//         build(node.left)
+//         build(node.right)
+//         res.push(node.val)
+//     }
+//     build(root);
+//     return res;
+// };
+let postorderTraversal = function (root) {
+    if (root == null) return []
+    let stack = [];
+    let res = [];
+    stack.push(root);
+    while (stack.length > 0) {
+        let node = stack.pop();
+        res.push(node.val);
+        if (node.left) stack.push(node.left)
+        if (node.right) stack.push(node.right)
     }
-    build(root);
-    return res;
-};
+    return res.reverse();
+}
 // @lc code=end
 
