@@ -83,19 +83,17 @@
  * @return {TreeNode}
  */
 var convertBST = function(root) {
-
     let sum = 0;
-    // 后序遍历
-    const loopTree = (root) => {
-        if (root == null) return null;
 
-        loopTree(root.right);
-        sum += root.val;
-        root.val = sum
-        loopTree(root.left);
+    let loop = (node) => {
+        if (node == null) return null;
+        loop(node.right);
+        sum += node.val;
+        node.val = sum;
+        loop(node.left);
+
     }
-
-    loopTree(root);
+    loop(root);
     return root;
 };
 // @lc code=end
