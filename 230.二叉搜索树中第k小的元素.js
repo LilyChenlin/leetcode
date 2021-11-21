@@ -62,22 +62,21 @@
 
 
 var kthSmallest = function(root, k) {
-    // 中序遍历
-    let res = 0;
+    let ans = null;
     let count = 0;
-
-    let traverse = (root) => {
-        if (root == null) return null;
-        traverse(root.left);
+    
+    let loop = (node) => {
+        if (node == null) return null;
+        loop(node.left);
         count++;
         if (count == k) {
-            res = root.val;
-        }
-        traverse(root.right)
-
+            ans = node.val;
+            return ; 
+        } 
+        loop(node.right);
     }
-    traverse(root);
-    return res;
+    loop(root);
+    return ans;
 };
 
 
