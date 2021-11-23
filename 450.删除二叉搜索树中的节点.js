@@ -19,26 +19,19 @@
  * @return {TreeNode}
  */
 var deleteNode = function(root, key) {
-    if (root == null) return null;
-    // 如果找到了这个节点
-    if (root.val == key) {
-        // 分三种情况
-        // 1. 这个节点没有左右节点，直接删除
-        if (root.left == null && root.right == null) {
-            return null;
-        }
-        // 2. 这个节点有左节点/右节点
+    if (root === null) return null;
+    if (root.val === key) {
+        // 考虑三种情况
+        // 1. 没有左右子树 直接删除
+        if (root.left == null && root.right == null) return null;
+        // 2. 有左右子树中一个
         if (root.left == null) return root.right;
         if (root.right == null) return root.left;
-
-        // 3. 这个节点都有左右节点
-        if (root.left !== null && root.right !== null) {
-            // 获得右子树的最小值
-            const minValNode = getMin(root.right);
-            root.val = minValNode.val;
-            root.right = deleteNode(root.right, minValNode.val);
-        }
-    } else if (root.val > key) {
+        // 3. 左右子树皆有
+        let node = getMin(root.right);
+        root.val = node.val;
+        root.right = deleteNode(root.right, node.val);
+    } else if (root.val > key) {// 直接遍历root左边的子树
         root.left = deleteNode(root.left, key)
     } else if (root.val < key) {
         root.right = deleteNode(root.right, key)
@@ -46,10 +39,9 @@ var deleteNode = function(root, key) {
     return root;
 };
 
-var getMin = (root) => {
-    // 二叉树右子树的最小树就是最左边的值
-    while(root.left) root = root.left;
-    return root;
+let getMin = (node) => {
+    while (node.left) node = node.left;
+    return node;
 }
 
 // 如果删除的节点左右子树都有，那么需要获得右子树最小的节点替换这个删除的节点，才能保证二叉搜索树的特性。
