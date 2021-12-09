@@ -10,29 +10,29 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    var res = []; // 记录最后全排列的结果
-    var track = []; // 记录当前的路径
-    
-    var backTrack = (nums, track) => {
-        // 触发结束条件 
-        if (track.length === nums.length) {
-            const temp = track.slice();
-            res.push(temp);
-            return res;
-        }
+    let res = [], solution = [];
 
-        for (var i = 0; i < nums.length; i++) {
-            if (track.indexOf(nums[i]) !== -1) {
-                continue;
+    let visited = [];
+    let backTrack = () => {
+        if (solution.length == nums.length) {
+            res.push([...solution]);
+            return;
+        } else {
+            for (let i = 0; i < nums.length; i++) {
+                if (!visited[nums[i]]) {
+                    solution.push(nums[i]);
+                    visited[nums[i]] = true;
+                    backTrack();
+                    solution.pop();
+                    visited[nums[i]] = false;
+
+                }
+
             }
-
-            track.push(nums[i]);
-            backTrack(nums, track);
-            track.pop()
         }
     }
+    backTrack();
 
-    backTrack(nums, track);
     return res;
 };
 // @lc code=end
