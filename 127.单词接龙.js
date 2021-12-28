@@ -12,52 +12,47 @@
  * @return {number}
  */
 var ladderLength = function (beginWord, endWord, wordList) {
-    // The First Step
-    const wordSet = new Set(wordList);
-    if (wordSet.size === 0 || !wordSet.has(endWord)) return 0;
-    // Second
+    let wordListSet = new Set(wordList);
+    if (wordListSet.size === 0 || !wordListSet.has(endWord)) return 0;
     let visited = new Set(),
-        beginVisited = new Set(),
-        endVisited = new Set(),
-        nextLevelVisited = new Set()
-    step = 1;
-    beginVisited.add(beginWord);
-    endVisited.add(endWord)
-    const changeWordEveryOneLetter = (word) => {
-        let wordArr = word.split('');
-        for (let i = 0; i < wordArr.length; i++) {
-            const originChar = wordArr[i];
+        queue = [],
+        step = 1;
+    
+    wordListSet.delete(beginWord);
 
+    visited.add(beginWord);
+    queue.push(beginWord);
+
+    const isTheWordEqualEndWord = (word) => {
+        const wordArr = word.split('');
+        for (let i = 0; i < wordArr.length; i++) {
+            const sChar = wordArr[i];
             for (let j = 0; j < 26; j++) {
-                let c = String.fromCharCode(j + 97);
-                if (originChar == c) continue;
+                const c = String.fromCharCode(j + 97);
+                if (c === wordArr[i]) continue;
                 wordArr[i] = c;
-                const nextWord = wordArr.join('');
-                if (wordSet.has(nextWord)) {
-                    if (endVisited.has(nextWord)) { return true };
-                    if (!visited.has(nextWord)) {
-                        nextLevelVisited.add(nextWord);
-                        visited.add(nextWord)
+
+                const str = wordArr.join('');
+                if (wordListSet.has(str)) {
+                    if (endWord === str) return true;
+                    if (!visited.has(str)) {
+                        visited.add(str);
+                        queue.push(str)
                     }
                 }
             }
-            wordArr[i] = originChar;
+            // 复原
+            wordArr[i] = sChar;
         }
         return false;
     }
 
-    while (beginVisited.size > 0 && endVisited.size > 0) {
-        if (beginVisited.size > endVisited.size) {
-            const temp = beginVisited;
-            beginVisited = endVisited
-            endVisited = temp;
+    while (queue.length > 0) {
+        const length = queue.length;
+        for (let i = 0; i < length; i++) {
+            const word = queue.shift();
+            if (isTheWordEqualEndWord(word)) { return step + 1 };
         }
-
-        nextLevelVisited = new Set();
-        for (let word of beginVisited) {
-            if (changeWordEveryOneLetter(word)) return step + 1;
-        }
-        beginVisited = nextLevelVisited;
         step++;
     }
     return 0;
