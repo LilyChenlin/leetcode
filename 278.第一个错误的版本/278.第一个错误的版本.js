@@ -19,23 +19,25 @@
  * @param {function} isBadVersion()
  * @return {function}
  */
-var solution = function(isBadVersion) {
+var solution = function (isBadVersion) {
     /**
      * @param {integer} n Total versions
      * @return {integer} The first bad version
      */
-    return function(n) {
+    return function (n) {
         let left = 1, right = n;
         while (left < right) {
-            let mid = left + Math.floor((right - left) / 2);
+            const mid = left + Math.floor((right - left) / 2);
             if (isBadVersion(mid)) {
                 right = mid;
             } else {
                 left = mid + 1;
             }
         }
-        return left;
+
+        // left === right 返回right也可以
+        return right;
     };
-};
+}
 // @lc code=end
 
