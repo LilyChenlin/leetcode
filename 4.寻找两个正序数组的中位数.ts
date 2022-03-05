@@ -6,36 +6,23 @@
 
 // @lc code=start
 function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
-        let concatArr = [];
-        let left = 0, right = 0, len1 = nums1.length, len2 = nums2.length;
-        while (left < len1 || right < len2) {
-            if (left < len1 && right < len2) {
-                if (nums1[left] <= nums2[right]) {
-                    concatArr.push(nums1[left]);
-                    left++;
-                } else {
-                    concatArr.push(nums2[right]);
-                    right++;
-                }
-            } else if (left < len1) {
-                concatArr.push(...nums1.slice(left));
-                break;
-            } else {
-                concatArr.push(...nums2.slice(right))
-                break;
-            }
-        }
-
-        let count = concatArr.length;
-        if (count % 2 === 0) {
-            return (concatArr[Math.floor(count / 2) - 1] + concatArr[Math.floor(count / 2)]) / 2.0;
-            
+    let m = nums1.length, n = nums2.length;
+    let len = m + n;
+    let aStart = 0, bStart = 0;
+    let left = 0, right = 0;
+    for (let i = 0; i <= Math.floor(len / 2); i++) {
+        left = right;
+        if (aStart < m && (nums1[aStart] < nums2[bStart]) || bStart >= n) {
+            right = nums1[aStart];
+            aStart++;
         } else {
-            return concatArr[Math.floor(count / 2)]
+            right = nums2[bStart];
+            bStart++;
         }
+    }
 
-
-
+    if (len % 2 == 0) return (left + right) / 2.0;
+    return right;
 };
 // @lc code=end
 
