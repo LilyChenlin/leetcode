@@ -5,26 +5,24 @@
  */
 
 // @lc code=start
-function trap(height: number[]): number {
-    let sum = 0, len = height.length;
-    let max_left = new Array(len).fill(0);
-    let max_right = new Array(len).fill(0);
-
-    for (let i = 1; i < len - 1; i++) {
-        max_left[i] = Math.max(max_left[i - 1], height[i - 1]);
+var trap = function(height) {
+    let ans = 0, len = height.length;
+    let max_left_arr = new Array(len).fill(0), max_right_arr = new Array(len).fill(0);
+    for (let i = 1; i < height.length - 1; i++) {
+        max_left_arr[i] = Math.max(max_left_arr[i - 1], height[i - 1])
     }
 
-    for (let i = len - 2; i >= 0; i--) {
-        max_right[i] = Math.max(max_right[i + 1], height[i + 1]);
+    for (let j = height.length - 2; j >= 0; j--) {
+        max_right_arr[j] = Math.max(max_right_arr[j + 1], height[j + 1]);
     }
 
-    for (let i = 1; i < len - 1; i++) {
-        let min = Math.min(max_left[i], max_right[i]);
-        if (min > height[i]) {
-            sum = sum + (min - height[i])
+    for (let i = 1; i < height.length - 1; i++) {
+        let minVal = Math.min(max_left_arr[i], max_right_arr[i]);
+        if (minVal > height[i]) {
+            ans += minVal - height[i]
         }
     }
-    return sum;
+    return ans;
 };
 // @lc code=end
 
