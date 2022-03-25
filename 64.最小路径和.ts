@@ -6,21 +6,24 @@
 
 // @lc code=start
 function minPathSum(grid: number[][]): number {
-    const m = grid.length, n = grid[0].length;
-    for (let i = 1; i < n; i++) {
-        grid[0][i] += grid[0][i - 1] 
-    }
+    let n = grid.length, m = grid[0].length;
+    let dp = new Array(n).fill(0).map(item => new Array(m));
+
+    dp[0][0] = grid[0][0]
     for (let i = 1; i < m; i++) {
-        grid[i][0] += grid[i - 1][0] 
+        dp[0][i] = dp[0][i - 1] + grid[0][i]
     }
 
-    for (let i = 1; i < m; i++) {
-        for (let j = 1; j < n; j++) {
-            let minVal = Math.min(grid[i - 1][j], grid[i][j - 1]);
-            grid[i][j] += minVal;
+    for (let i = 1; i < n; i++) {
+        dp[i][0] = dp[i - 1][0] + grid[i][0];
+    }
+
+    for(let i = 1; i < n; i++) {
+        for (let j = 1; j < m; j++) {
+            dp[i][j] = Math.min(dp[i - 1][j] + grid[i][j], dp[i][j - 1] + grid[i][j])
         }
     }
-    return grid[m - 1][n - 1]
+    return dp[n - 1][m - 1]
 };
 // @lc code=end
 
