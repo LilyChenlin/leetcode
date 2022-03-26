@@ -6,13 +6,12 @@
 
 // @lc code=start
 function climbStairs(n: number): number {
-    let dp = new Array(n + 1);
-    dp[0] = 1;
-    dp[1] = 1;
+    let arr = [];
+    arr[0] = 1; arr[1] = 1;
     for (let i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
+        arr[i] = arr[i - 1] + arr[i - 2];
     }
-    return dp[n]
+    return arr[n]
 };
 // @lc code=end
 
