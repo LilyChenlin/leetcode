@@ -23,23 +23,23 @@
  // BFS
 function levelOrder(root: TreeNode | null): number[][] {
     if (root == null) return [];
-    let 
-        res = [], // 遍历结果
-        queue = []; // 遍历队列
-    
-    queue.push(root);
-    while (queue.length > 0) {
-        let n = queue.length;
-        let level = [];
-        for (let i = 0; i < n; i++) {
-            let node = queue.shift();
+    let stack = [], res = []
+    stack.push(root);
+    while (stack.length !== 0) {
+        let len = stack.length, level = [];
+        for (let i = 0; i < len; i++) {
+            let node = stack.shift();
             level.push(node.val);
+
             if (node.left !== null) {
-                queue.push(node.left);
+                stack.push(node.left);
             }
+
             if (node.right !== null) {
-                queue.push(node.right);
+                stack.push(node.right);
             }
+
+
         }
         res.push(level);
     }
