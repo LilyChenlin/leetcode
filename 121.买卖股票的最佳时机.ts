@@ -6,13 +6,12 @@
 
 // @lc code=start
 function maxProfit(prices: number[]): number {
-    let maxValue = -Infinity, minValue = prices[0];
-    let ans = 0;
-    for (let i = 0; i < prices.length; i++) {
+    let minValue = prices[0], maxValue = -Infinity, ans = 0;
+    for (let i = 1; i < prices.length; i++) {
         maxValue = Math.max(maxValue, prices[i]);
-        if (prices[i] < minValue) {
-            minValue = prices[i];
+        if (minValue > prices[i]) {
             maxValue = prices[i]
+            minValue = prices[i]
         }
         ans = Math.max(ans, maxValue - minValue);
     }
