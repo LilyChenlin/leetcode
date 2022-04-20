@@ -18,31 +18,23 @@
  */
 
 function sortList(head: ListNode | null): ListNode | null {
-    if(head == null || head.next == null) return head;
-    let slow = head, fast = head.next;
-    while (fast !== null && fast.next !== null) {
-        slow = slow.next;
-        fast = fast.next.next;
+    let sortArr = [];
+    while (head != null) {
+        const val = head.val;
+        sortArr.push(val);
+        head = head.next;
     }
-    let tmp = slow.next;
-    slow.next = null;
-    let leftSort = sortList(head);
-    let rightSort = sortList(tmp);
 
-    let cur = new ListNode(0);
-    let copy = cur;
-    while(leftSort !== null && rightSort !== null) {
-        if(leftSort.val < rightSort.val) {
-            copy.next = leftSort;
-            leftSort = leftSort.next
-        } else {
-            copy.next = rightSort;
-            rightSort = rightSort.next;
-        }
-        copy = copy.next;
+    // 升序
+    sortArr = sortArr.sort((a, b) => a - b);
+    let node = new ListNode(), dummyNode = node;;
+    for (let i = 0; i < sortArr.length; i++) {
+        let temp = new ListNode(sortArr[i]);
+        node.next = temp;
+        node = node.next;
     }
-    copy.next = leftSort !== null ? leftSort : rightSort;
-    return cur.next;
+
+    return dummyNode.next;
 };
 // @lc code=end
 
