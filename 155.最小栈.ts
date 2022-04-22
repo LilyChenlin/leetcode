@@ -5,28 +5,44 @@
  */
 
 // @lc code=start
+class myNode {
+    val: number;
+    min: number;
+    next: myNode;
+    constructor(val: number, min: number, node: myNode) {
+        this.val = val;
+        this.min = min;
+        this.next = node;
+    }
+}
+
 class MinStack {
-    protected Stack: number[] = [];
-    protected MinStack: number[] = [];
+    head: myNode;
+    constructor(head: myNode) {
+        this.head = head;
+    }
 
     push(val: number): void {
-        this.Stack.push(val);
-        this.MinStack.push(Math.min(val, this.getMin() ?? Infinity))
+        if (this.head == null) {
+            this.head = new myNode(val, val, null);
+        } else {
+            this.head = new myNode(val, Math.min(val, this.head.min), this.head);
+        }
     }
 
     pop(): void {
-        this.Stack.pop();
-        this.MinStack.pop()
+        this.head = this.head.next;
     }
 
     top(): number {
-        return this.Stack[this.Stack.length - 1]
+        return this.head.val;
     }
 
     getMin(): number {
-        return this.MinStack[this.MinStack.length - 1]
+        return this.head.min;
     }
 }
+
 
 /**
  * Your MinStack object will be instantiated and called as such:
