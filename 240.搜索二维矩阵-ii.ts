@@ -6,18 +6,17 @@
 
 // @lc code=start
 function searchMatrix(matrix: number[][], target: number): boolean {
-    if (matrix.length == 0 || matrix[0].length == 0) {
-        return false;
-    }
-    let x = 0, y = matrix[0].length - 1;
+    let m = matrix.length, n = matrix[0].length;
+    if (m == 0 || n == 0) return false;
 
-    while (x < matrix.length && y >= 0) {
-        if (matrix[x][y] == target) {
+    let i = 0, j = n - 1;
+    while (i < m && j >= 0) {
+        if (matrix[i][j] === target) {
             return true;
-        } else if (matrix[x][y] > target) {
-            y--;
+        } else if (matrix[i][j] >= target) {
+            j--;
         } else {
-            x++;
+            i++;
         }
     }
     return false;
