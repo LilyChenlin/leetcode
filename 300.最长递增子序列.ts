@@ -5,19 +5,23 @@
  */
 
 // @lc code=start
-function lengthOfLIS(nums: number[]): number {
-    const n = nums.length;
-    const dp = new Array(n).fill(1);
-    let res = 0;
-    for (let i = 0; i < n; i++) {
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function (nums) {
+    let len = nums.length, dp = new Array(len).fill(1), ans = 1;
+
+    for (let i = 1; i < len; i++) {
         for (let j = 0; j < i; j++) {
-            if (nums[j] < nums[i]) {
+            if (nums[i] > nums[j]) {
                 dp[i] = Math.max(dp[i], dp[j] + 1);
             }
         }
-        res = Math.max(res, dp[i])
+        ans = Math.max(ans, dp[i])
     }
-    return res;
-};
+
+    return ans;
+}; 
 // @lc code=end
 
