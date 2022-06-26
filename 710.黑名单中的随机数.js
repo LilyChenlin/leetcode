@@ -4,41 +4,53 @@
  * [710] 黑名单中的随机数
  */
 
-// @lc code=start
 /**
- * @param {number} N
+ * @param {number} n
  * @param {number[]} blacklist
  */
-var Solution = function(N, blacklist) {
-    this.sz = N - blacklist.length;
-    // 先讲黑名单中的对象添加到map中
-    this.blacklistMap = new Map();
-    for (var value of blacklist) {
-        this.blacklistMap.set(value, 666);
-    }
+// 从[0, n - m)中取值，将此区间的在黑名单中的元素映射到[n - m, n)中
 
-    var last = N - 1; // 获得最后一个索引
-    for(var value of blacklist) {
-        if (value >= this.sz) {continue};
-
-        while (this.blacklistMap.has(last)) {
-            last--
+var Solution = function (n, blacklist) {
+    this.whiteMap = new Map();
+    const m = blacklist.length;
+    this.bound = n - m;
+    let black = new Set();
+    // 将[n - m, m]的先扔过去 占位
+    for (let i = 0; i < m; i++) {
+        if (blacklist[i] >= this.bound) {
+            black.add(blacklist[i]);
         }
-        this.blacklistMap.set(value, last)
-        last--;
     }
+    console.log(black)
 
+    // 将[0, n - m) 映射到whiteMap未映射到的区域
+    let w = this.bound;
+    for (let i = 0; i < m; i++) {
+        if (blacklist[i] < this.bound) {
+            while (black.has(w)) {
+                w++;
+            }
+            this.whiteMap.set(blacklist[i], w);
+            w++;
+        }
+    }
+    console.log(this.whiteMap)
 };
 
 /**
  * @return {number}
  */
-Solution.prototype.pick = function() {
-    // var len = N - blacklist.length;
-    // 随机获取一个index
-    var index = Math.floor(Math.random() * this.sz);
-    return this.blacklistMap.has(index) ? this.blacklistMap.get(index) : index;
+Solution.prototype.pick = function () {
+    let x = ~~(Math.random(0, 1) * this.bound);
+    console.log(x)
+    return this.whiteMap.get(x) || x;
 };
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * var obj = new Solution(n, blacklist)
+ * var param_1 = obj.pick()
+ */
 
 /**
  * Your Solution object will be instantiated and called as such:
